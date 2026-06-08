@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planamind — Supply Chain Planning, Reimagined</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #1E3B8B;
+    --orange: #F97216;
+    --light: #F4F6FB;
+    --white: #ffffff;
+    --text: #0f1b3d;
+    --muted: #6b7899;
+    --border: rgba(30,59,139,0.1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    color: var(--blue);
+    letter-spacing: -0.02em;
+  }
+  .logo span { color: var(--orange); }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--muted);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--blue); }
+
+  .nav-actions { display: flex; align-items: center; gap: 0.8rem; }
+
+  .nav-login {
+    color: var(--blue);
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    border: 1.5px solid var(--border);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .nav-login:hover { border-color: var(--blue); color: var(--blue); }
+
+  .nav-cta {
+    background: var(--blue);
+    color: white;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: var(--orange); transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    background: var(--light);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(249,114,22,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -150px; left: 10%;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(30,59,139,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero-text { position: relative; z-index: 2; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(30,59,139,0.08);
+    border: 1px solid rgba(30,59,139,0.15);
+    border-radius: 100px;
+    padding: 0.35rem 1rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--blue);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1.8rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.1s forwards;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--orange);
+    border-radius: 50%;
+    animation: pulse 1.8s infinite;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.25s forwards;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--orange);
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.4s forwards;
+  }
+
+  .hero-actions {
+    display: flex; gap: 1rem; align-items: center;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.55s forwards;
+  }
+
+  .btn-primary {
+    background: var(--orange);
+    color: white;
+    padding: 0.85rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(249,114,22,0.3);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(249,114,22,0.4); }
+
+  .btn-ghost {
+    color: var(--blue);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    display: flex; align-items: center; gap: 0.4rem;
+    transition: gap 0.2s;
+  }
+  .btn-ghost:hover { gap: 0.7rem; }
+
+  /* HERO VISUAL */
+  .hero-visual {
+    position: relative; z-index: 2;
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0;
+    animation: fadeIn 1s 0.6s forwards;
+  }
+
+  .dashboard-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 24px 80px rgba(30,59,139,0.12), 0 4px 16px rgba(0,0,0,0.06);
+    padding: 2rem;
+    width: 100%;
+    max-width: 440px;
+  }
+
+  .card-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .card-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+
+  .card-badge {
+    background: rgba(30,59,139,0.08);
+    color: var(--blue);
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+  }
+
+  .forecast-bars {
+    display: flex; align-items: flex-end; gap: 6px;
+    height: 100px;
+    margin-bottom: 1.5rem;
+  }
+
+  .bar {
+    flex: 1;
+    border-radius: 4px 4px 0 0;
+    transition: height 0.3s;
+  }
+  .bar.actual { background: var(--blue); opacity: 0.85; }
+  .bar.forecast { background: var(--orange); opacity: 0.7; }
+  .bar.forecast.dashed {
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--orange) 0px, var(--orange) 3px,
+      transparent 3px, transparent 6px
+    );
+    opacity: 0.6;
+  }
+
+  .chart-legend {
+    display: flex; gap: 1.2rem; margin-bottom: 1.5rem;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 0.4rem;
+    font-size: 0.75rem; color: var(--muted); font-weight: 500;
+  }
+  .legend-dot { width: 8px; height: 8px; border-radius: 2px; }
+
+  .metrics-row {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .metric { text-align: center; }
+  .metric-val {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    color: var(--text);
+    display: block;
+  }
+  .metric-val.up { color: #16a34a; }
+  .metric-val.orange { color: var(--orange); }
+  .metric-label {
+    font-size: 0.72rem;
+    color: var(--muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* LOGOS / TRUST */
+  .trust {
+    padding: 3rem 4rem;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+  }
+  .trust-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+  .trust-logos {
+    display: flex; justify-content: center; align-items: center;
+    gap: 3rem; flex-wrap: wrap;
+  }
+  .trust-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: #bbc5e0;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  /* FEATURES */
+  section { padding: 6rem 4rem; }
+
+  .section-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--orange);
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 3.5rem;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .feature-card {
+    background: var(--light);
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(30,59,139,0.1);
+  }
+
+  .feature-icon {
+    width: 44px; height: 44px;
+    background: var(--blue);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.2rem;
+    font-size: 1.3rem;
+  }
+
+  .feature-card h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.01em;
+  }
+
+  .feature-card p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* HOW IT WORKS */
+  .how { background: var(--blue); color: white; }
+  .how h2 { color: white; }
+  .how .section-sub { color: rgba(255,255,255,0.65); }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 1rem;
+  }
+
+  .step {
+    padding: 2rem 2rem 2rem 0;
+    position: relative;
+  }
+
+  .step:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: 0; top: 2.3rem;
+    color: rgba(255,255,255,0.2);
+    font-size: 1.2rem;
+  }
+
+  .step-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem;
+    color: var(--orange);
+    line-height: 1;
+    margin-bottom: 0.8rem;
+    opacity: 0.9;
+  }
+
+  .step h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 0.5rem;
+  }
+
+  .step p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+  }
+
+  /* STATS */
+  .stats {
+    background: white;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 4rem;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .stat-val {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3rem;
+    color: var(--blue);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-val span { color: var(--orange); }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  /* CTA */
+  .cta-section {
+    background: linear-gradient(135deg, #0f1b3d 0%, var(--blue) 60%, #1a4fa0 100%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: -100px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(249,114,22,0.15) 0%, transparent 65%);
+    border-radius: 50%;
+  }
+
+  .cta-section h2 {
+    color: white;
+    position: relative; z-index: 1;
+    max-width: 600px;
+    margin: 0 auto 1rem;
+  }
+
+  .cta-section p {
+    color: rgba(255,255,255,0.65);
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+    position: relative; z-index: 1;
+  }
+
+  .cta-btns {
+    display: flex; gap: 1rem; justify-content: center;
+    position: relative; z-index: 1;
+  }
+
+  .btn-white {
+    background: white;
+    color: var(--blue);
+    padding: 0.85rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: transform 0.2s;
+  }
+  .btn-white:hover { transform: translateY(-2px); }
+
+  .btn-outline-white {
+    background: transparent;
+    color: white;
+    border: 1.5px solid rgba(255,255,255,0.35);
+    padding: 0.85rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: border-color 0.2s;
+  }
+  .btn-outline-white:hover { border-color: white; }
+
+  /* FOOTER */
+  footer {
+    padding: 3rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--blue);
+  }
+  .footer-logo span { color: var(--orange); }
+
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a {
+    text-decoration: none;
+    font-size: 0.85rem;
+    color: var(--muted);
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--blue); }
+
+  .footer-copy {
+    font-size: 0.8rem;
+    color: #c0c8e0;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.7); }
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* NAV ACTIONS */
+  .nav-actions { display: flex; align-items: center; gap: 0.8rem; }
+
+  .nav-login {
+    color: var(--blue);
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.58rem 1.2rem;
+    border-radius: 6px;
+    border: 1.5px solid var(--border);
+    cursor: pointer;
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .nav-login:hover { border-color: var(--blue); background: rgba(30,59,139,0.04); }
+
+  /* MODAL OVERLAY */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(15,27,61,0.55);
+    backdrop-filter: blur(6px);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: white;
+    border-radius: 16px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 32px 80px rgba(15,27,61,0.2);
+    position: relative;
+    animation: modalIn 0.25s ease;
+  }
+
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(16px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .modal-close {
+    position: absolute; top: 1.2rem; right: 1.2rem;
+    background: none; border: none; cursor: pointer;
+    color: var(--muted); font-size: 1.2rem; line-height: 1;
+    transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--text); }
+
+  .modal-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    color: var(--blue);
+    margin-bottom: 0.3rem;
+  }
+  .modal-logo span { color: var(--orange); }
+
+  .modal-subtitle {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 2rem;
+  }
+
+  .modal label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .org-input-wrap {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+    margin-bottom: 0.5rem;
+  }
+  .org-input-wrap:focus-within { border-color: var(--blue); }
+
+  .org-prefix {
+    background: var(--light);
+    padding: 0.75rem 0.9rem;
+    font-size: 0.88rem;
+    color: var(--muted);
+    font-weight: 500;
+    border-right: 1.5px solid var(--border);
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  .org-suffix {
+    background: var(--light);
+    padding: 0.75rem 0.9rem;
+    font-size: 0.88rem;
+    color: var(--muted);
+    font-weight: 500;
+    border-left: 1.5px solid var(--border);
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  #orgInput {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 0.75rem 0.8rem;
+    font-size: 0.95rem;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    font-weight: 500;
+    background: white;
+    min-width: 0;
+  }
+  #orgInput::placeholder { color: #c0c8e0; }
+
+  .org-hint {
+    font-size: 0.76rem;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .org-error {
+    font-size: 0.76rem;
+    color: #dc2626;
+    margin-bottom: 1rem;
+    display: none;
+  }
+  .org-error.show { display: block; }
+
+  .modal-submit {
+    width: 100%;
+    background: var(--blue);
+    color: white;
+    border: none;
+    padding: 0.85rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .modal-submit:hover { background: var(--orange); transform: translateY(-1px); }
+
+  .modal-divider {
+    text-align: center;
+    font-size: 0.78rem;
+    color: #c0c8e0;
+    margin: 1.2rem 0;
+    position: relative;
+  }
+  .modal-divider::before, .modal-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%; width: 38%;
+    height: 1px;
+    background: var(--border);
+  }
+  .modal-divider::before { left: 0; }
+  .modal-divider::after { right: 0; }
+
+  .modal-demo-link {
+    display: block;
+    text-align: center;
+    font-size: 0.83rem;
+    color: var(--muted);
+  }
+  .modal-demo-link a {
+    color: var(--orange);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .modal-demo-link a:hover { text-decoration: underline; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 6rem 2rem 3rem; gap: 3rem; }
+    .hero-visual { display: none; }
+    section { padding: 4rem 2rem; }
+    .features-grid { grid-template-columns: 1fr 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .step::after { display: none; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .trust { padding: 2rem; }
+    .stats { padding: 3rem 2rem; }
+    .cta-section { padding: 4rem 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">plan<span>a</span>mind</div>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="nav-login" onclick="openModal()">Log in</button>
+    <a href="#contact" class="nav-cta">Request Demo</a>
+  </div>
+</nav>
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="loginModal" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-logo">plan<span>a</span>mind</div>
+    <p class="modal-subtitle">Enter your organisation name to continue</p>
+
+    <label for="orgInput">Organisation name</label>
+    <div class="org-input-wrap">
+      <span class="org-suffix" style="border-right:1.5px solid var(--border);border-left:none;background:var(--light);padding:0.75rem 0.9rem;font-size:0.88rem;color:var(--muted);font-weight:500;white-space:nowrap;user-select:none;border-right:1.5px solid rgba(30,59,139,0.1)"></span>
+      <input
+        type="text"
+        id="orgInput"
+        placeholder="e.g. sunpharma"
+        autocomplete="off"
+        autocapitalize="none"
+        spellcheck="false"
+        oninput="updatePreview()"
+        onkeydown="if(event.key==='Enter') goToOrg()"
+      />
+      <span class="org-suffix">.planamind.com</span>
+    </div>
+    <p class="org-hint" id="orgPreview">Your login URL will appear here</p>
+    <p class="org-error" id="orgError">Please enter your organisation name.</p>
+
+    <button class="modal-submit" onclick="goToOrg()">Continue →</button>
+
+    <div class="modal-divider">or</div>
+    <p class="modal-demo-link">Just exploring? <a href="https://demo.planamind.com/sign-in" target="_blank">Use the demo tenant</a></p>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-badge">Supply Chain Planning Platform</div>
+    <h1>Plan smarter.<br><em>Scale faster.</em><br>Waste nothing.</h1>
+    <p class="hero-sub">Planamind is a multi-tenant SaaS platform for demand forecasting, supply planning, and S&OP — built for mid-market companies that have outgrown spreadsheets.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Request a Demo</a>
+      <a href="#features" class="btn-ghost">See features →</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="dashboard-card">
+      <div class="card-header">
+        <span class="card-title">Demand Forecast</span>
+        <span class="card-badge">Live</span>
+      </div>
+      <div class="forecast-bars">
+        <div class="bar actual" style="height:52px"></div>
+        <div class="bar actual" style="height:64px"></div>
+        <div class="bar actual" style="height:58px"></div>
+        <div class="bar actual" style="height:75px"></div>
+        <div class="bar actual" style="height:68px"></div>
+        <div class="bar actual" style="height:82px"></div>
+        <div class="bar forecast" style="height:88px"></div>
+        <div class="bar forecast dashed" style="height:94px"></div>
+        <div class="bar forecast dashed" style="height:91px"></div>
+        <div class="bar forecast dashed" style="height:98px"></div>
+      </div>
+      <div class="chart-legend">
+        <div class="legend-item">
+          <div class="legend-dot" style="background:var(--blue)"></div> Actuals
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:var(--orange)"></div> Forecast
+        </div>
+      </div>
+      <div class="metrics-row">
+        <div class="metric">
+          <span class="metric-val up">94%</span>
+          <span class="metric-label">Accuracy</span>
+        </div>
+        <div class="metric">
+          <span class="metric-val orange">−18%</span>
+          <span class="metric-label">Excess Inv.</span>
+        </div>
+        <div class="metric">
+          <span class="metric-val">12 wk</span>
+          <span class="metric-label">Horizon</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<div class="trust">
+  <p class="trust-label">Trusted by planning teams in</p>
+  <div class="trust-logos">
+    <span class="trust-logo">Pharma</span>
+    <span class="trust-logo">FMCG</span>
+    <span class="trust-logo">Industrial</span>
+    <span class="trust-logo">Consumer Durables</span>
+    <span class="trust-logo">Distribution</span>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="reveal">
+    <p class="section-label">Platform Capabilities</p>
+    <h2>Everything your planning<br>team needs, unified.</h2>
+    <p class="section-sub">From statistical forecasting to supply replenishment — one platform, one source of truth, built for the way planners actually work.</p>
+  </div>
+
+  <div class="features-grid reveal">
+    <div class="feature-card">
+      <div class="feature-icon">📈</div>
+      <h3>Statistical Forecasting</h3>
+      <p>Automated baseline generation using best-fit statistical models. Handles seasonality, trends, and intermittent demand patterns across your full product hierarchy.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🏗️</div>
+      <h3>7-Level Product Hierarchy</h3>
+      <p>Model your business exactly as it is — from Division to Pack level. Forecast and plan at any level, roll up or drill down instantly.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔄</div>
+      <h3>S&OP Workflow</h3>
+      <p>Structured demand review, supply review, and executive consensus cycles. Version-controlled plans with project-level data isolation.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📦</div>
+      <h3>Supply Planning</h3>
+      <p>Net requirements calculation, safety stock logic, and replenishment orders — automatically derived from your approved demand plan.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">👥</div>
+      <h3>Customer Dimension</h3>
+      <p>Channel and customer-level forecasting built in. Plan by region, customer, or channel — not just aggregate volumes.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔗</div>
+      <h3>Multi-tenant SaaS</h3>
+      <p>Cloud-native, project-based architecture. Each client and planning cycle is isolated. Secure, scalable, and accessible from anywhere.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="reveal">
+    <p class="section-label" style="color:rgba(249,114,22,0.9)">How It Works</p>
+    <h2>From data to decision<br>in four steps.</h2>
+    <p class="section-sub">Planamind is designed to reduce the time between raw data and a confident plan — without requiring an army of analysts.</p>
+  </div>
+
+  <div class="steps reveal">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Upload Your Data</h3>
+      <p>Import sales history, inventory, and master data via Excel. Planamind handles your hierarchy automatically.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>Generate Forecasts</h3>
+      <p>Statistical models run instantly. Review and adjust at any level of your product or customer hierarchy.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>Review & Collaborate</h3>
+      <p>Demand and supply reviewers work from the same plan. Overrides are tracked. Consensus is captured.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h3>Execute with Confidence</h3>
+      <p>Approved plans drive supply orders and reporting. Track accuracy, bias, and service levels over time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-grid reveal">
+    <div>
+      <div class="stat-val">94<span>%</span></div>
+      <div class="stat-label">Forecast Accuracy (typical)</div>
+    </div>
+    <div>
+      <div class="stat-val">−20<span>%</span></div>
+      <div class="stat-label">Reduction in Excess Inventory</div>
+    </div>
+    <div>
+      <div class="stat-val">3×</div>
+      <div class="stat-label">Faster S&OP Cycle</div>
+    </div>
+    <div>
+      <div class="stat-val">7</div>
+      <div class="stat-label">Hierarchy Levels Supported</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <h2>Ready to replace your spreadsheets?</h2>
+  <p>See Planamind live with your own data. Setup takes minutes.</p>
+  <div class="cta-btns">
+    <a href="mailto:rishi@anamind.com" class="btn-white">Request a Demo</a>
+    <a href="https://demo.planamind.com" target="_blank" class="btn-outline-white">Try the Platform</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">plan<span>a</span>mind</div>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="mailto:rishi@anamind.com">Contact</a>
+    <a href="https://anamind.com">Anamind</a>
+  </div>
+  <span class="footer-copy">© 2026 Anamind. All rights reserved.</span>
+</footer>
+
+<script>
+  // Modal
+  function openModal() {
+    document.getElementById('loginModal').classList.add('open');
+    setTimeout(() => document.getElementById('orgInput').focus(), 100);
+  }
+  function closeModal() {
+    document.getElementById('loginModal').classList.remove('open');
+    document.getElementById('orgInput').value = '';
+    document.getElementById('orgPreview').textContent = 'Your login URL will appear here';
+    document.getElementById('orgError').classList.remove('show');
+  }
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('loginModal')) closeModal();
+  }
+  function updatePreview() {
+    const val = document.getElementById('orgInput').value.trim().toLowerCase().replace(/[^a-z0-9-]/g, '');
+    const preview = document.getElementById('orgPreview');
+    document.getElementById('orgError').classList.remove('show');
+    if (val) {
+      preview.innerHTML = `You'll be taken to <strong style="color:var(--blue)">${val}.planamind.com</strong>`;
+    } else {
+      preview.textContent = 'Your login URL will appear here';
+    }
+  }
+  function goToOrg() {
+    const val = document.getElementById('orgInput').value.trim().toLowerCase().replace(/[^a-z0-9-]/g, '');
+    if (!val) {
+      document.getElementById('orgError').classList.add('show');
+      return;
+    }
+    window.location.href = `https://${val}.planamind.com/sign-in`;
+  }
+
+  // Escape key closes modal
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Animated bars on load
+  const bars = document.querySelectorAll('.bar');
+  setTimeout(() => {
+    bars.forEach((b, i) => {
+      b.style.opacity = '0';
+      b.style.transition = `height 0.4s ${i * 0.04}s ease, opacity 0.3s ${i * 0.04}s`;
+      setTimeout(() => { b.style.opacity = b.classList.contains('dashed') ? '0.6' : (b.classList.contains('forecast') ? '0.7' : '0.85'); }, 50);
+    });
+  }, 700);
+</script>
+</body>
+</html>
