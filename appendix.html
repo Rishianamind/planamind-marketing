@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Planamind — Supply Chain Planning, Reimagined</title>
+<title>Planamind — Appendix &amp; Reference Material</title>
 <link rel="icon" type="image/png" href="assets/apple-touch-icon.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -88,8 +88,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    padding: 9rem var(--gut) 5rem;
-    gap: 4rem;
+    padding: 8rem 4rem 4rem;
     background: var(--light);
     position: relative;
     overflow: hidden;
@@ -291,7 +290,7 @@
 
   /* LOGOS / TRUST */
   .trust {
-    padding: 3rem var(--gut);
+    padding: 3rem 4rem;
     border-bottom: 1px solid var(--border);
     text-align: center;
   }
@@ -437,7 +436,7 @@
     background: white;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    padding: 5rem var(--gut);
+    padding: 4rem;
   }
 
   .stats-grid {
@@ -807,7 +806,7 @@
   .statement {
     background: var(--light);
     text-align: center;
-    padding: 6rem var(--gut);
+    padding: 5rem 4rem;
   }
   .statement p {
     font-family: 'DM Serif Display', serif;
@@ -995,6 +994,91 @@
   .persona-card li { font-size: 0.86rem; color: var(--muted); line-height: 1.55; padding-left: 1.3rem; position: relative; }
   .persona-card li::before { content: '✓'; position: absolute; left: 0; color: #16a34a; font-weight: 700; }
 
+  /* ===== APPENDIX-SPECIFIC ===== */
+  .ax-hero {
+    padding: 9rem var(--gut) 4rem;
+    background: var(--light);
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .ax-hero::before {
+    content: ''; position: absolute; top: -200px; right: -150px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(249,114,22,0.07) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .ax-eyebrow {
+    display: inline-block; font-size: 0.76rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange);
+    margin-bottom: 1rem;
+  }
+  .ax-hero h1 { animation: none; opacity: 1; margin: 0 auto 1.2rem; max-width: 760px; }
+  .ax-hero p { font-size: 1.1rem; color: var(--muted); line-height: 1.7; max-width: 620px; margin: 0 auto; }
+
+  .ax-back {
+    color: var(--blue); font-size: 0.88rem; font-weight: 600;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;
+    transition: gap 0.2s;
+  }
+  .ax-back:hover { gap: 0.7rem; }
+
+  /* do / don't two-column */
+  .ax-twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .ax-listcard {
+    background: var(--light); border: 1px solid var(--border);
+    border-radius: 14px; padding: 2rem;
+  }
+  .ax-listcard h3 { font-size: 1.05rem; color: var(--text); font-weight: 600; margin-bottom: 1.2rem; }
+  .ax-list { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
+  .ax-list li { font-size: 0.9rem; color: var(--muted); line-height: 1.55; padding-left: 1.6rem; position: relative; }
+  .ax-list.yes li::before { content: '✓'; color: #16a34a; position: absolute; left: 0; font-weight: 700; }
+  .ax-list.no li::before { content: '✗'; color: #dc2626; position: absolute; left: 0; font-weight: 700; }
+
+  /* big stat callout */
+  .ax-callout {
+    display: grid; grid-template-columns: 220px 1fr; gap: 2.5rem; align-items: center;
+    background: #0f1b3d; color: white; border-radius: 16px; padding: 2.5rem 3rem;
+    margin-bottom: 3rem;
+  }
+  .ax-bignum { font-family: 'DM Serif Display', serif; font-size: 3.4rem; color: var(--orange); line-height: 1; }
+  .ax-bignum small { display: block; font-size: 1rem; color: rgba(255,255,255,0.7); margin-top: 0.4rem; }
+  .ax-callout p { font-size: 1rem; line-height: 1.7; color: rgba(255,255,255,0.8); }
+
+  /* info cards (security, sharepoint) */
+  .info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .info-card { background: var(--light); border: 1px solid var(--border); border-radius: 12px; padding: 1.8rem; }
+  .info-head { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.1rem; }
+  .info-badge {
+    width: 36px; height: 36px; flex-shrink: 0; background: var(--blue); color: white;
+    border-radius: 9px; display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif; font-size: 1.1rem;
+  }
+  .info-head h3 { font-size: 1rem; color: var(--text); font-weight: 600; }
+  .info-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+  .info-card li { font-size: 0.85rem; color: var(--muted); line-height: 1.5; padding-left: 1.1rem; position: relative; }
+  .info-card li::before { content: '·'; color: var(--orange); font-weight: 700; position: absolute; left: 0; font-size: 1.1rem; top: -0.1rem; }
+
+  .ax-note {
+    margin-top: 2rem; background: var(--blue); color: white;
+    border-radius: 12px; padding: 1.4rem 1.8rem; font-size: 0.92rem; line-height: 1.7;
+  }
+  .ax-note strong { color: var(--orange); }
+
+  /* screen grid */
+  .screen-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .screen-tile {
+    background: var(--light); border: 1px solid var(--border); border-radius: 12px;
+    padding: 1.4rem 1.5rem; display: flex; align-items: center; gap: 0.9rem;
+    font-weight: 600; color: var(--text); font-size: 0.95rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .screen-tile:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(30,59,139,0.09); }
+  .st-badge {
+    width: 34px; height: 34px; flex-shrink: 0; background: var(--blue); color: white;
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif; font-size: 1rem;
+  }
+
   /* POLISH */
   nav { transition: box-shadow 0.25s, background 0.25s, padding 0.25s; }
   nav.scrolled { box-shadow: 0 6px 28px rgba(15,27,61,0.07); padding-top: 0.9rem; padding-bottom: 0.9rem; }
@@ -1005,8 +1089,6 @@
     content: ''; position: absolute; left: 0; right: 0; bottom: -6px;
     height: 2px; background: var(--orange); border-radius: 2px;
   }
-
-  /* Mobile menu toggle */
   .nav-toggle {
     display: none; background: none; border: none; cursor: pointer;
     width: 30px; height: 22px; position: relative; padding: 0;
@@ -1038,45 +1120,28 @@
     body.menu-open .nav-actions { display: flex; margin-top: 0.9rem; gap: 0.8rem; }
     body.menu-open .nav-actions .nav-login,
     body.menu-open .nav-actions .nav-cta { flex: 1; text-align: center; }
-    .hero { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; gap: 2.5rem; }
-    .hero-sub { max-width: none; }
-    .hero-visual { display: none; }
+    .ax-hero { padding: 7rem 2rem 3rem; }
+    .ax-twocol, .info-grid { grid-template-columns: 1fr; }
+    .screen-grid { grid-template-columns: 1fr 1fr; }
+    .ax-callout { grid-template-columns: 1fr; gap: 1.2rem; padding: 2rem; text-align: center; }
     section { padding: 4.5rem 2rem; }
-    .features-grid { grid-template-columns: 1fr 1fr; }
-    .steps { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-    .step::after { display: none; }
-    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .intel-grid { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2.5rem 2rem; }
-    .trust { padding: 2.5rem 2rem; }
-    .stats { padding: 3.5rem 2rem; }
     .cta-section { padding: 4.5rem 2rem; }
-    .pillars { grid-template-columns: 1fr 1fr; max-width: none; }
-    .problem-grid, .whynow-grid, .intel-grid, .quotes,
-    .roi-grid, .persona-grid { grid-template-columns: 1fr; }
-    .outcomes-grid { grid-template-columns: 1fr 1fr; }
     .timeline { grid-template-columns: 1fr 1fr; }
     .tl-step::after { display: none; }
-    .cap-grid { grid-template-columns: 1fr 1fr; }
-    .statement { padding: 4rem 2rem; }
-    .price-row { grid-template-columns: 110px 1fr 88px; gap: 0.8rem; }
-    .price-why { grid-template-columns: 1fr; gap: 0.9rem; }
   }
 
   @media (max-width: 600px) {
-    h1 { font-size: clamp(2.3rem, 9.5vw, 3rem); }
-    .hero { padding: 6.5rem 1.5rem 2.5rem; }
+    h1 { font-size: clamp(2.2rem, 9vw, 2.8rem); }
+    .ax-hero { padding: 6.5rem 1.5rem 2.5rem; }
     section { padding: 3.5rem 1.5rem; }
-    .trust { padding-left: 1.5rem; padding-right: 1.5rem; }
     footer { padding: 2.5rem 1.5rem; }
-    .stats, .statement, .cta-section { padding-left: 1.5rem; padding-right: 1.5rem; }
-    .features-grid, .cap-grid, .timeline, .outcomes-grid,
-    .stats-grid, .pillars { grid-template-columns: 1fr; }
-    .pillar { display: flex; align-items: baseline; gap: 0.7rem; }
-    .pillar-val { margin-bottom: 0; }
-    .problem-card { flex-direction: column; gap: 0.8rem; }
-    .price-row { grid-template-columns: 1fr auto; gap: 0.2rem 1rem; align-items: baseline; }
-    .price-track { display: none; }
-    .quote-card, .persona-card, .intel-card, .roi-panel { padding: 1.6rem; }
+    .cta-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .screen-grid, .timeline { grid-template-columns: 1fr; }
+    .ax-callout { padding: 1.8rem; }
+    .ax-bignum { font-size: 2.8rem; }
+    .ax-listcard, .info-card, .intel-card { padding: 1.6rem; }
     .footer-links { flex-wrap: wrap; justify-content: center; gap: 1.2rem; }
   }
 </style>
@@ -1085,619 +1150,279 @@
 
 <!-- NAV -->
 <nav>
-  <div class="logo"><img src="assets/planamind_logo.png" alt="Planamind"></div>
+  <a href="index.html" class="logo"><img src="assets/planamind_logo.png" alt="Planamind"></a>
   <ul class="nav-links">
-    <li><a href="#problem">Why now</a></li>
-    <li><a href="#intelligence">Intelligence</a></li>
-    <li><a href="#capabilities">Capabilities</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#ana">Ana</a></li>
+    <li><a href="#depth">Capability depth</a></li>
+    <li><a href="#security">Security</a></li>
+    <li><a href="#sharepoint">SharePoint</a></li>
+    <li><a href="#screens">Screens</a></li>
   </ul>
   <div class="nav-actions">
-    <button class="nav-login" onclick="openModal()">Log in</button>
-    <a href="#contact" class="nav-cta">Proof of Value</a>
+    <a href="index.html" class="nav-login">← Overview</a>
+    <a href="index.html#contact" class="nav-cta">Proof of Value</a>
   </div>
   <button class="nav-toggle" aria-label="Toggle menu" onclick="document.body.classList.toggle('menu-open')">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<!-- LOGIN MODAL -->
-<div class="modal-overlay" id="loginModal" onclick="handleOverlayClick(event)">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <div class="modal-logo"><img src="assets/planamind_logo.png" alt="Planamind"></div>
-    <p class="modal-subtitle">Enter your organisation name to continue</p>
+<!-- APPENDIX HERO -->
+<section class="ax-hero">
+  <span class="ax-eyebrow">Appendix · Reference material</span>
+  <h1>The detail behind<br>the claims.</h1>
+  <p>Ana, capability depth, security, SharePoint sync, attrition-proofing, and the full nine-screen product walk-through — for prospects whose questions take us there.</p>
+  <div style="margin-top:2rem"><a href="index.html" class="ax-back">← Back to the overview</a></div>
+</section>
 
-    <label for="orgInput">Organisation name</label>
-    <div class="org-input-wrap">
-      <span class="org-suffix" style="border-right:1.5px solid var(--border);border-left:none;background:var(--light);padding:0.75rem 0.9rem;font-size:0.88rem;color:var(--muted);font-weight:500;white-space:nowrap;user-select:none;border-right:1.5px solid rgba(30,59,139,0.1)"></span>
-      <input
-        type="text"
-        id="orgInput"
-        placeholder="e.g. sunpharma"
-        autocomplete="off"
-        autocapitalize="none"
-        spellcheck="false"
-        oninput="updatePreview()"
-        onkeydown="if(event.key==='Enter') goToOrg()"
-      />
-      <span class="org-suffix">.planamind.com</span>
-    </div>
-    <p class="org-hint" id="orgPreview">Your login URL will appear here</p>
-    <p class="org-error" id="orgError">Please enter your organisation name.</p>
-
-    <button class="modal-submit" onclick="goToOrg()">Continue →</button>
-
-    <div class="modal-divider">or</div>
-    <p class="modal-demo-link">Just exploring? <a href="https://demo.planamind.com/sign-in" target="_blank">Use the demo tenant</a></p>
-  </div>
-</div>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-text">
-    <div class="hero-badge">Demand · Supply · MRP · Finance — one product</div>
-    <h1>The planning platform<br>that goes live<br><em>in 48 hours.</em></h1>
-    <p class="hero-sub">One upload. One product across demand, supply, MRP and finance — with Ana, an AI copilot in every screen. Live on your data in two business days, at one-tenth the cost of an enterprise incumbent.</p>
-    <div class="hero-actions">
-      <a href="#contact" class="btn-primary">Start a 48-hour Proof of Value</a>
-      <a href="#intelligence" class="btn-ghost">See the intelligence layer →</a>
-    </div>
-
-    <div class="pillars">
-      <div class="pillar">
-        <div class="pillar-val">48<span>h</span></div>
-        <div class="pillar-label">from upload to working plan</div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-val">~10<span>×</span></div>
-        <div class="pillar-label">lower TCO than SAP IBP / Kinaxis</div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-val">Ana</div>
-        <div class="pillar-label">AI copilot in every screen</div>
-      </div>
-    </div>
+<!-- ANA -->
+<section id="ana">
+  <div class="reveal section-head">
+    <p class="section-label">Built-in AI</p>
+    <h2>Ana — the planning copilot<br>in every screen.</h2>
+    <p class="section-sub">Not a sidebar chatbot. Embedded across Demand, Supply, Finance, Analytics, Signals, and BI — grounded in your real SKU codes.</p>
   </div>
 
-  <div class="hero-visual">
-    <div class="dashboard-card">
-      <div class="card-header">
-        <span class="card-title">Demand · 12-Model AutoML</span>
-        <span class="card-badge">Live</span>
-      </div>
-      <div class="forecast-bars">
-        <div class="bar actual" style="height:52px"></div>
-        <div class="bar actual" style="height:64px"></div>
-        <div class="bar actual" style="height:58px"></div>
-        <div class="bar actual" style="height:75px"></div>
-        <div class="bar actual" style="height:68px"></div>
-        <div class="bar actual" style="height:82px"></div>
-        <div class="bar forecast" style="height:88px"></div>
-        <div class="bar forecast dashed" style="height:94px"></div>
-        <div class="bar forecast dashed" style="height:91px"></div>
-        <div class="bar forecast dashed" style="height:98px"></div>
-      </div>
-      <div class="chart-legend">
-        <div class="legend-item">
-          <div class="legend-dot" style="background:var(--blue)"></div> Actuals
-        </div>
-        <div class="legend-item">
-          <div class="legend-dot" style="background:var(--orange)"></div> Forecast
-        </div>
-      </div>
-      <div class="metrics-row">
-        <div class="metric">
-          <span class="metric-val up">7.9%</span>
-          <span class="metric-label">WAPE</span>
-        </div>
-        <div class="metric">
-          <span class="metric-val orange">3-tier</span>
-          <span class="metric-label">Supply sim</span>
-        </div>
-        <div class="metric">
-          <span class="metric-val">12</span>
-          <span class="metric-label">Models</span>
-        </div>
-      </div>
+  <div class="ax-twocol reveal">
+    <div class="ax-listcard">
+      <h3>What Ana does</h3>
+      <ul class="ax-list yes">
+        <li>Answers in 3–5 sentences, grounded in your real SKU codes.</li>
+        <li>Generates the Business Report — deterministic numbers plus an executive summary.</li>
+        <li>Generates the Analytics Report — 4–6 "what's working / why / watch" cards.</li>
+        <li>Discovers competitors and feeds the news view automatically.</li>
+        <li>Surfaces screen-aware suggested questions for every module.</li>
+      </ul>
+    </div>
+    <div class="ax-listcard">
+      <h3>What Ana will not do</h3>
+      <ul class="ax-list no">
+        <li>Off-topic queries are deflected before any AI call — zero cost.</li>
+        <li>Never invents SKU codes, customers, or numbers.</li>
+        <li>Never references the underlying AI tech in conversation.</li>
+        <li>Per-tenant query budget enforced server-side — predictable spend.</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- TRUST -->
-<div class="trust">
-  <p class="trust-label">A pedigree built across industries — Anamind planning engagements</p>
-  <div class="trust-logos">
-    <span class="trust-logo">Automotive</span>
-    <span class="trust-logo">F&amp;B</span>
-    <span class="trust-logo">Consumer Goods</span>
-    <span class="trust-logo">Fashion</span>
-    <span class="trust-logo">Interiors</span>
-    <span class="trust-logo">Pharma</span>
-  </div>
-</div>
-
-<!-- PROBLEM -->
-<section class="problem" id="problem">
+<!-- CAPABILITY DEPTH -->
+<section id="depth" class="roi">
   <div class="reveal section-head">
-    <p class="section-label">Why planners are stuck</p>
-    <h2>Supply-chain planning is broken<br>in four predictable ways.</h2>
-    <p class="section-sub">And every one of them shows up in the next quarterly review.</p>
+    <p class="section-label">Capability depth</p>
+    <h2>The depth most planning tools<br>cut for shorter sales cycles.</h2>
+    <p class="section-sub">These are the features that get scoped out of a 6-month implementation. We ship them on day one.</p>
   </div>
 
-  <div class="problem-grid reveal">
-    <div class="problem-card">
-      <div class="problem-num">1</div>
-      <div>
-        <h3>Tool sprawl</h3>
-        <p>Demand in one system, supply in another, finance in a third, dashboards in a fourth. Every cycle is reconciled in email and Excel. Reality lives in spreadsheets nobody can audit.</p>
-      </div>
+  <div class="ax-twocol reveal">
+    <div class="ax-listcard">
+      <h3>Out of the box — what you usually pay extra for</h3>
+      <ul class="ax-list yes">
+        <li>Batch-level inventory with expiry tracking — FIFO, FEFO, and near-expiry rationalisation built in.</li>
+        <li>BOM with approved alternate components — the engine routes around shortages without planner intervention.</li>
+        <li>True three-tier supply chain (Retail → Plant/DC → Raw Material) with daily simulation, not monthly buckets.</li>
+        <li>Forecasting designed for intermittent and lumpy demand (Croston, Theta, Prophet-lite) — not just steady-state retail.</li>
+        <li>Audit-trail-friendly architecture (versioned facts, structured upload jobs, encrypted secrets) ready for regulated environments.</li>
+      </ul>
     </div>
-    <div class="problem-card">
-      <div class="problem-num">2</div>
-      <div>
-        <h3>Implementation paralysis</h3>
-        <p>Incumbent deployments run 6–24 months and burn millions before the first planner logs in. Half never reach steady-state — and the SI invoice still arrives.</p>
-      </div>
-    </div>
-    <div class="problem-card">
-      <div class="problem-num">3</div>
-      <div>
-        <h3>Knowledge that walks out</h3>
-        <p>Senior planners hold the heuristics. When they leave, the institution starts over. Replacement training takes 9–18 months, with stockouts in between.</p>
-      </div>
-    </div>
-    <div class="problem-card">
-      <div class="problem-num">4</div>
-      <div>
-        <h3>AI theatre</h3>
-        <p>Every legacy vendor now ships an "AI assistant" that mostly rewords a chart caption. None of them pre-empt the next planning decision in your SKU codes.</p>
-      </div>
+    <div class="ax-listcard">
+      <h3>Who it serves — industries already running on it</h3>
+      <ul class="ax-list yes">
+        <li><strong>Regulated manufacturing</strong> — batch + expiry tracking, audit-friendly architecture, approved-alternate routing on BOM shortages.</li>
+        <li><strong>FMCG / CPG</strong> — promotions calendar with elasticity, channel-level demand, AOP variance per division.</li>
+        <li><strong>Electronics &amp; industrial</strong> — long lead-time suppliers, BOM with substitutes, lumpy demand modelled by Croston.</li>
+        <li><strong>Specialty retail</strong> — multi-DC with cross-product Tier 2 demand, seasonal pattern detection.</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- WHY NOW -->
-<section>
+<!-- ATTRITION -->
+<section id="attrition">
   <div class="reveal section-head">
-    <p class="section-label">Why now</p>
-    <h2>Three shifts have made the old<br>planning playbook untenable.</h2>
-    <p class="section-sub">And the cost of staying on it now compounds quarter on quarter.</p>
+    <p class="section-label">Attrition &amp; training risk</p>
+    <h2>When a senior planner leaves,<br>the institution doesn't restart.</h2>
+    <p class="section-sub">Planning judgement lives in the product, not in someone's head.</p>
   </div>
 
-  <div class="whynow-grid reveal">
-    <div class="whynow-card">
-      <h3>Volatility is the new baseline</h3>
-      <p>Post-COVID supply shocks, geopolitical disruption, and climate-led demand swings have turned monthly cycles into weekly fire-fighting. Models built for steady-state demand miss too often.</p>
-    </div>
-    <div class="whynow-card">
-      <h3>Working capital under pressure</h3>
-      <p>Inflation and rate cycles have made every dollar of inventory more expensive to carry. CFOs are pushing for safety stock that is defensible — not whatever the planner has done for years.</p>
-    </div>
-    <div class="whynow-card">
-      <h3>AI cleared the cost barrier</h3>
-      <p>12-model ensembles and conversational AI used to need a data-science team. Today they cost cents per SKU and ship as software. Vendors that don't pass that saving on are about to look very expensive.</p>
-    </div>
-  </div>
-</section>
-
-<!-- STATEMENT -->
-<div class="statement">
-  <p>A demand, supply, and finance planning platform — with a built-in AI copilot — that goes live on your data in <em>two business days</em>, at <em>one-tenth the cost</em> of an enterprise-class incumbent.</p>
-  <p class="statement-note">— Read every section below as proof of this claim. —</p>
-</div>
-
-<!-- INTELLIGENCE LAYER -->
-<section id="intelligence">
-  <div class="reveal section-head">
-    <p class="section-label">The intelligence layer</p>
-    <h2>Seven planning intelligences<br>your current tool doesn't have.</h2>
-    <p class="section-sub">None of these require a data-science team, a consultant, or a second platform. They ship in Planamind on day one.</p>
+  <div class="ax-callout reveal">
+    <div class="ax-bignum">9–18<small>months to train a replacement planner</small></div>
+    <p>By which time you've absorbed at least one stockout and one missed AOP. With Planamind, a new joiner onboards by reading the screen — not by shadowing for a year.</p>
   </div>
 
   <div class="intel-grid reveal">
     <div class="intel-card">
       <div class="intel-num">1</div>
       <div>
-        <h3>12-Model AutoML</h3>
-        <p>SES, Holt-Winters, Theta, ARIMA, Prophet-lite, MLP, Neural Network, Ensemble, Croston — not just the 3 models your incumbent ships. Auto-picks the winner per SKU on MAPE, with manual override and instant visual feedback.</p>
+        <h3>Recommendations engine</h3>
+        <p>Pattern-classifies every SKU forecast (intermittent, sparse, biased, wrong-model, volatile, healthy) and ranks fixes by expected portfolio FA improvement. A-class candidates pre-validated on a 6-month holdout.</p>
       </div>
     </div>
     <div class="intel-card">
       <div class="intel-num">2</div>
       <div>
-        <h3>Forecast Accuracy Recommendations</h3>
-        <p>Classifies every SKU by pattern — intermittent, biased, wrong-model, volatile, or healthy — and ranks improvements by expected portfolio FA gain. Each rec is pre-validated on a 6-month holdout before it surfaces.</p>
+        <h3>Ana — Safety Stock recommendations</h3>
+        <p>Suggests the right safety-stock days per SKU using your service-level target per ABC class. Shows recommended vs current as a Δ; the planner adopts with one click.</p>
       </div>
     </div>
     <div class="intel-card">
       <div class="intel-num">3</div>
       <div>
-        <h3>Safety Stock Intelligence</h3>
-        <p>Recommends optimal safety-stock days per SKU using your ABC service-level targets (98/95/90). Shows recommended vs. current as a Δ column. The planner adopts in one click.</p>
+        <h3>New launch reference SKU</h3>
+        <p>Picks the right "like product" by hierarchy similarity, history depth, and recency — with a plain-English narrative.</p>
       </div>
     </div>
     <div class="intel-card">
       <div class="intel-num">4</div>
       <div>
-        <h3>New Product Analogies</h3>
-        <p>Scores candidate reference SKUs by hierarchy similarity, declining trend, and volume match — and produces a plain-English reasoning narrative, not just a code. Feeds the forecast engine from day one.</p>
-      </div>
-    </div>
-    <div class="intel-card">
-      <div class="intel-num">5</div>
-      <div>
-        <h3>External Signal Regression</h3>
-        <p>Auto-correlates macro indicators (PMI, CPI), weather, and cost series against your demand. Surfaces R², lag, p-value, and confidence bands so planners see statistical evidence before acting.</p>
-      </div>
-    </div>
-    <div class="intel-card">
-      <div class="intel-num">6</div>
-      <div>
-        <h3>Events Library &amp; Elasticity</h3>
-        <p>Models historical event impact — promotions, price changes, holidays — with elasticity coefficients and a Headroom KPI. Year-over-year event attribution is built in.</p>
-      </div>
-    </div>
-    <div class="intel-card">
-      <div class="intel-num">7</div>
-      <div>
-        <h3>Monthly Review Narrative</h3>
-        <p>Ana explains last month's performance against forecast and AOP, attributing the move to internal causes (model selection, overrides, channel mix) and external factors (macro signals, events). FY risks and opportunities surface automatically every cycle.</p>
+        <h3>Business Report (auto)</h3>
+        <p>Ana writes "what's working / why / watch" cards every 6 hours from your data. New joiners onboard in days, not months.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CAPABILITY MAP -->
-<section class="capmap" id="capabilities">
+<!-- SECURITY -->
+<section id="security" class="roi">
   <div class="reveal section-head">
-    <p class="section-label">Capability map</p>
-    <h2>One product. Nine capabilities.<br>One AI that connects them all.</h2>
-    <p class="section-sub">No add-on licences, no roadmap-slide commitments.</p>
+    <p class="section-label">Security &amp; IT</p>
+    <h2>Engineered to clear the<br>first InfoSec review.</h2>
+    <p class="section-sub">No on-prem footprint. No bespoke integrations. No surprises in the questionnaire.</p>
   </div>
 
-  <div class="cap-grid reveal">
-    <div class="cap-card">
-      <div class="cap-head"><div class="cap-badge">D</div><h3>Demand</h3></div>
-      <p>12-model AutoML ensemble (SES, Holt-Winters, Theta, ARIMA, Prophet-lite, MLP, Croston) with auto-pick or manual override per SKU.</p>
-    </div>
-    <div class="cap-card">
-      <div class="cap-head"><div class="cap-badge">S</div><h3>Supply</h3></div>
-      <p>3-tier multi-echelon daily simulation with BOM explosion and alternate-RM fallback. Replenishment with safety-stock cover.</p>
-    </div>
-    <div class="cap-card">
-      <div class="cap-head"><div class="cap-badge">M</div><h3>MRP + Material</h3></div>
-      <p>Gross / net requirements, scheduled receipts, planned orders. BOM-organised material view sharing supply-tab numbers.</p>
-    </div>
-    <div class="cap-card">
-      <div class="cap-head"><div class="cap-badge">F</div><h3>Finance / GP</h3></div>
-      <p>Revenue, COGS, GP, GP%, AOP variance derived from the same data. Override a forecast, watch GP recompute.</p>
-    </div>
-    <div class="cap-card">
-      <div class="cap-head"><div class="cap-badge">X</div><h3>External Signals</h3></div>
-      <p>Auto-correlated macro, weather, and cost series with R, lag, and band. Events with elasticity and Headroom KPI.</p>
-    </div>
-    <div class="cap-card">
-      <div class="cap-head"><div class="cap-badge">B</div><h3>BI Dashboard</h3></div>
-      <p>Five-zone executive view: KPIs, "act today", trends + run-rate, mix + variance + accuracy heatmap, signals + news.</p>
-    </div>
-    <div class="cap-card">
-      <div class="cap-head"><div class="cap-badge">N</div><h3>Substitution / Launch</h3></div>
-      <p>Predecessor / successor with bridge dates. AI-suggested reference SKU for new launches with a reasoning narrative.</p>
-    </div>
-    <div class="cap-card">
-      <div class="cap-head"><div class="cap-badge">A</div><h3>Ana — built-in AI</h3></div>
-      <p>FA recs ranked by expected improvement. Safety stock Δ per ABC class. New product analogy scoring. Monthly review with internal + external attribution.</p>
-    </div>
-    <div class="cap-card">
-      <div class="cap-head"><div class="cap-badge">R</div><h3>Monthly Review<span class="cap-tag">NEW</span></h3></div>
-      <p>Ana explains last month's performance vs forecast and AOP, attributes the move to internal and external factors, surfaces FY risks, and rebuilds every cycle from your actual data.</p>
-    </div>
-  </div>
-</section>
-
-<!-- WHY WE WIN -->
-<section>
-  <div class="reveal section-head">
-    <p class="section-label">Why we win</p>
-    <h2>Same capabilities. Smarter AI.<br>10× cheaper.</h2>
-    <p class="section-sub">Match the incumbents on the planning fundamentals. Decisively beat them on AI, cost, and time-to-value.</p>
-  </div>
-
-  <div class="compare-wrap reveal">
-    <table class="compare">
-      <thead>
-        <tr>
-          <th>Capability</th>
-          <th>SAP IBP / Kinaxis / Blue Yonder / Anaplan</th>
-          <th>Planamind</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Forecast accuracy recommendations</td>
-          <td class="them">✗ Not available</td>
-          <td class="us us-col">Pattern classification + ranked recs, holdout-validated</td>
-        </tr>
-        <tr>
-          <td>Safety stock intelligence</td>
-          <td class="them">Rule-based, manual inputs</td>
-          <td class="us us-col">ABC-routed + service-level optimised, one-click Δ</td>
-        </tr>
-        <tr>
-          <td>New product analogy AI</td>
-          <td class="them">Manual, planner's judgement</td>
-          <td class="us us-col">Hierarchy + trend + volume scoring with reasoning</td>
-        </tr>
-        <tr>
-          <td>External signal regression</td>
-          <td class="them">Add-on or separate module</td>
-          <td class="us us-col">Built-in: R², lag, p-value, confidence bands</td>
-        </tr>
-        <tr>
-          <td>Monthly review narrative</td>
-          <td class="them">KPI dashboard only</td>
-          <td class="us us-col">AI explains performance vs forecast + AOP with factor attribution</td>
-        </tr>
-        <tr>
-          <td>Demand forecasting</td>
-          <td class="them">3–5 statistical + ML models</td>
-          <td class="us us-col">12-model AutoML ensemble</td>
-        </tr>
-        <tr>
-          <td>Supply planning</td>
-          <td class="them">Multi-echelon</td>
-          <td class="us us-col">3-tier + BOM + alternate-RM fallback</td>
-        </tr>
-        <tr>
-          <td>Time-to-value</td>
-          <td class="them">9–18 months + SI engagement</td>
-          <td class="us us-col">48 hours, configuration only</td>
-        </tr>
-        <tr>
-          <td>Annual software cost</td>
-          <td class="them">$0.5M–$4M+ depending on vendor</td>
-          <td class="us us-col">~1/10th</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<!-- OUTCOMES + TESTIMONIALS -->
-<div class="stats">
-  <div class="reveal section-head center">
-    <p class="section-label">Our pedigree</p>
-    <h2>What Anamind's planning<br>engagements have delivered.</h2>
-    <p class="section-sub">Outcomes consistently achieved across hundreds of engagements. The same team, methodology, and engine now ship inside Planamind.</p>
-  </div>
-
-  <div class="outcomes-grid reveal">
-    <div>
-      <div class="outcome-val">5–20<span>%</span></div>
-      <div class="outcome-label">Forecast accuracy</div>
-      <div class="outcome-sub">Better inventory positioning, fewer stockouts.</div>
-    </div>
-    <div>
-      <div class="outcome-val">10–20<span>%</span></div>
-      <div class="outcome-label">Stock reduction</div>
-      <div class="outcome-sub">Less inventory, same or better service level.</div>
-    </div>
-    <div>
-      <div class="outcome-val">50–80<span>%</span></div>
-      <div class="outcome-label">Order-loss prevention</div>
-      <div class="outcome-sub">Through improved demand visibility.</div>
-    </div>
-    <div>
-      <div class="outcome-val">5–20<span>%</span></div>
-      <div class="outcome-label">Working capital saved</div>
-      <div class="outcome-sub">Inventory investment optimised; cash freed.</div>
-    </div>
-  </div>
-
-  <div class="quotes reveal">
-    <div class="quote-card">
-      <p>There was a need to decentralise demand planning across countries. The interface is user-friendly and intuitive — a plus point given that personnel with different backgrounds use it across geographies.</p>
-      <div class="quote-author">Asian Paints</div>
-      <div class="quote-meta">Anamind engagement — international demand planning</div>
-    </div>
-    <div class="quote-card">
-      <p>A fantastic collaborative planning tool that doesn't just forecast but drives consensus from top to bottom across functions. The graphical views with drilldowns are exactly what we needed for our S&amp;OP discussions.</p>
-      <div class="quote-author">Johnson &amp; Johnson</div>
-      <div class="quote-meta">Anamind engagement — S&amp;OP and demand planning</div>
-    </div>
-  </div>
-</div>
-
-<!-- ROI -->
-<section class="roi">
-  <div class="reveal section-head">
-    <p class="section-label">ROI worked example</p>
-    <h2>What 5 points of forecast<br>accuracy is worth.</h2>
-    <p class="section-sub">Illustrative for a $500M-revenue mid-market manufacturer with 18% inventory carrying cost. Adjust to your numbers in 60 seconds.</p>
-  </div>
-
-  <div class="roi-grid reveal">
-    <div class="roi-panel">
-      <h3>Assumptions</h3>
-      <div class="roi-line"><span>Revenue</span><span>$500M / year</span></div>
-      <div class="roi-line"><span>Inventory days of cover</span><span>45 days</span></div>
-      <div class="roi-line"><span>Avg inventory on hand</span><span>~$60M</span></div>
-      <div class="roi-line"><span>Carrying cost</span><span>18% / year</span></div>
-      <div class="roi-line"><span>Current WAPE</span><span>22%</span></div>
-      <div class="roi-line"><span>Target WAPE with Planamind</span><span>17% (5pp gain)</span></div>
-    </div>
-    <div class="roi-results">
-      <div class="roi-result">
-        <div class="rr-val">~$6.6M</div>
-        <div class="rr-label">Inventory released</div>
-        <div class="rr-sub">~11% inventory reduction × $60M base — defensible safety stock cuts excess cover.</div>
-      </div>
-      <div class="roi-result orange">
-        <div class="rr-val">~$1.2M / yr</div>
-        <div class="rr-label">Carrying-cost saved</div>
-        <div class="rr-sub">18% × $6.6M released. Recurring annual saving, not a one-time.</div>
-      </div>
-      <div class="roi-result">
-        <div class="rr-val">~$4.5M / yr</div>
-        <div class="rr-label">Stockout-driven revenue recovered</div>
-        <div class="rr-sub">Conservative 60% reduction in order losses on 1.5% of revenue currently lost to stockouts.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="roi-total reveal">
-    <strong>~$1.2M</strong> annual operating saving + <strong>~$6.6M</strong> one-time working-capital release + <strong>~$4.5M</strong> revenue recovery — vs a Planamind subscription typically 5–10% of one IBP/Kinaxis annual licence.
-  </div>
-</section>
-
-<!-- SETUP & DEPLOYMENT -->
-<section class="how" id="how">
-  <div class="reveal section-head">
-    <p class="section-label" style="color:rgba(249,114,22,0.9)">Setup &amp; deployment</p>
-    <h2>From contract to production<br>in days, not quarters.</h2>
-    <p class="section-sub">Onboarding into Planamind looks more like Notion than an ERP implementation. Multi-tenant SaaS — going live is configuration, not a project.</p>
-  </div>
-
-  <div class="timeline reveal">
-    <div class="tl-step">
-      <span class="tl-day">DAY 0</span>
-      <h3>Tenant up</h3>
-      <p>Subdomain provisioned. Clerk SSO connected. NDA signed.</p>
-    </div>
-    <div class="tl-step">
-      <span class="tl-day">DAY 1</span>
-      <h3>Data uploaded</h3>
-      <p>Master, transactions, supply, pricelist, AOP, BOM. Engine runs forecasts + 3-tier supply plan in the background.</p>
-    </div>
-    <div class="tl-step">
-      <span class="tl-day">DAY 2</span>
-      <h3>Live readout</h3>
-      <p>60-min session: side-by-side accuracy on A-class SKUs vs your current model. Full supply plan. Ana SS recommendations.</p>
-    </div>
-    <div class="tl-step">
-      <span class="tl-day">WEEK 1</span>
-      <h3>Pilot sprint</h3>
-      <p>Planners run their next cycle on Planamind alongside today's tool. Optional InfoSec walk-through.</p>
-    </div>
-    <div class="tl-step">
-      <span class="tl-day">DAY 30</span>
-      <h3>Production</h3>
-      <p>All divisions live. Pilot data carries over — no re-uploads. End-to-end planning without an SI in the room.</p>
-    </div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section id="pricing">
-  <div class="reveal section-head">
-    <p class="section-label">Pricing</p>
-    <h2>Annual subscription.<br>The 10× cost gap is structural.</h2>
-    <p class="section-sub">Per tenant, per division. No per-seat tax, no services markup. Annual TCO — mid-market estimate, illustrative ranges.</p>
-  </div>
-
-  <div class="price-rows reveal">
-    <div class="price-row">
-      <div class="price-name">SAP IBP</div>
-      <div class="price-track"><div class="price-fill" style="width:100%"></div></div>
-      <div class="price-amt">$1.5M–$4M+</div>
-    </div>
-    <div class="price-row">
-      <div class="price-name">Kinaxis</div>
-      <div class="price-track"><div class="price-fill" style="width:78%"></div></div>
-      <div class="price-amt">$1.0M–$3M</div>
-    </div>
-    <div class="price-row">
-      <div class="price-name">Blue Yonder</div>
-      <div class="price-track"><div class="price-fill" style="width:64%"></div></div>
-      <div class="price-amt">$0.8M–$2.5M</div>
-    </div>
-    <div class="price-row">
-      <div class="price-name">Anaplan</div>
-      <div class="price-track"><div class="price-fill" style="width:42%"></div></div>
-      <div class="price-amt">$0.5M–$1.5M</div>
-    </div>
-    <div class="price-row us">
-      <div class="price-name">Planamind</div>
-      <div class="price-track"><div class="price-fill" style="width:10%"></div></div>
-      <div class="price-amt">~1/10th</div>
-    </div>
-  </div>
-
-  <div class="price-why reveal">
-    <div>Multi-tenant SaaS — no per-tenant infrastructure cost.</div>
-    <div>No SI partner network to subsidise.</div>
-    <div>Self-serve onboarding — no implementation team to staff.</div>
-    <div>Modern stack (Next.js, Postgres, Vercel) — no legacy maintenance debt.</div>
-    <div>AI handles what consultants used to.</div>
-    <div>And the SI line item disappears.</div>
-  </div>
-</section>
-
-<!-- WHAT CHANGES FOR YOU -->
-<section>
-  <div class="reveal section-head">
-    <p class="section-label">What changes for you</p>
-    <h2>Same product, three<br>different wins.</h2>
-    <p class="section-sub">The CFO, the planner, and IT each have a different reason to say yes.</p>
-  </div>
-
-  <div class="persona-grid reveal">
-    <div class="persona-card">
-      <div class="persona-badge">$</div>
-      <h3>For the CFO</h3>
-      <div class="persona-tagline">Capital efficiency, not cost-cutting.</div>
+  <div class="info-grid reveal">
+    <div class="info-card">
+      <div class="info-head"><div class="info-badge">T</div><h3>Tenant isolation</h3></div>
       <ul>
-        <li>GP%, AOP variance and revenue gap-to-target on the same dashboard your supply team uses.</li>
-        <li>Working capital pressure-tested with daily simulation — defensible safety stock per ABC class.</li>
-        <li>~10× lower TCO than IBP/Kinaxis — and the SI line item disappears.</li>
-        <li>4-week pilot, walk-away clause. Worst case: two days of an analyst's time.</li>
+        <li>Per-tenant subdomain</li>
+        <li>tenantId on every fact row</li>
+        <li>Admin surface fenced to root domain</li>
+        <li>Cross-tenant query paths impossible</li>
       </ul>
     </div>
-    <div class="persona-card">
-      <div class="persona-badge">P</div>
-      <h3>For the planner</h3>
-      <div class="persona-tagline">Less tool sprawl, more judgement.</div>
+    <div class="info-card">
+      <div class="info-head"><div class="info-badge">A</div><h3>Auth &amp; RBAC</h3></div>
       <ul>
-        <li>One screen across demand, supply, MRP and finance. No more Excel reconciliation.</li>
-        <li>Ana suggests model switches, safety-stock changes, and reference SKUs — with reasoning.</li>
-        <li>Excel-shaped uploads. No DSL, no schema design, no consultant in the room.</li>
-        <li>&lt; 15 minutes from first login to first override. No multi-day training.</li>
+        <li>Clerk: SAML, OIDC, MFA, magic links</li>
+        <li>SOC 2 Type II</li>
+        <li>Roles: admin / planner / collab / viewer</li>
+        <li>Dimension-level scoping for partners</li>
       </ul>
     </div>
-    <div class="persona-card">
-      <div class="persona-badge">IT</div>
-      <h3>For IT / InfoSec</h3>
-      <div class="persona-tagline">Modern stack, predictable surface.</div>
+    <div class="info-card">
+      <div class="info-head"><div class="info-badge">K</div><h3>Secrets &amp; data</h3></div>
       <ul>
-        <li>Multi-tenant SaaS — no on-prem, no agents, no per-tenant infra cost.</li>
-        <li>Clerk SSO (SAML / OIDC / MFA), AES-256-GCM secrets, EU/US/APAC region pinning.</li>
-        <li>SharePoint sync read-only, per-site Sites.Selected grant, no Delegated permissions.</li>
-        <li>Per-tenant AI query budget enforced server-side. Predictable AI spend.</li>
+        <li>AES-256-GCM at rest (per-IV)</li>
+        <li>TLS only in transit</li>
+        <li>Neon Postgres encrypted at rest</li>
+        <li>EU / US / APAC region pinning</li>
       </ul>
     </div>
+    <div class="info-card">
+      <div class="info-head"><div class="info-badge">I</div><h3>AI usage</h3></div>
+      <ul>
+        <li>Aggregated context only — no PII</li>
+        <li>Off-topic deflected before the LLM call</li>
+        <li>Per-tenant query budget enforced</li>
+        <li>No model training on your data</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="ax-note reveal">
+    <strong>Audit trail</strong> — every upload writes a structured UploadJob row · every forecast and supply run is project-versioned · every user action ties back to a Clerk identity.
+  </div>
+</section>
+
+<!-- SHAREPOINT -->
+<section id="sharepoint">
+  <div class="reveal section-head">
+    <p class="section-label">SharePoint sync</p>
+    <h2>Drop files in SharePoint.<br>Planamind picks them up.</h2>
+    <p class="section-sub">For customers whose planning files already live in a Document Library — no manual re-uploads.</p>
+  </div>
+
+  <div class="timeline reveal" style="margin-bottom:2.5rem">
+    <div class="tl-step">
+      <span class="tl-day">STEP 1</span>
+      <h3>Drop file in SharePoint</h3>
+      <p>Planner adds Excel to the Document Library — exactly as today.</p>
+    </div>
+    <div class="tl-step">
+      <span class="tl-day">STEP 2</span>
+      <h3>Planamind reads via Graph</h3>
+      <p>Microsoft Graph, Sites.Selected (per-site grant), Files.Read.All. Read-only.</p>
+    </div>
+    <div class="tl-step">
+      <span class="tl-day">STEP 3</span>
+      <h3>Filename routes to processor</h3>
+      <p>Master, transactions, supply, pricelist, budget, BOM — auto-classified.</p>
+    </div>
+    <div class="tl-step">
+      <span class="tl-day">STEP 4</span>
+      <h3>Processed &amp; surfaced</h3>
+      <p>Errors surface as structured issues. No raw stack traces to planners.</p>
+    </div>
+  </div>
+
+  <div class="ax-twocol reveal">
+    <div class="ax-listcard">
+      <h3>What IT sees</h3>
+      <ul class="ax-list yes">
+        <li>Standard Azure AD app registration — no on-prem agent.</li>
+        <li>Sites.Selected (per-site grant only) + Files.Read.All. No Delegated permissions, no user impersonation.</li>
+        <li>Read-only by design — Planamind never writes back to SharePoint.</li>
+        <li>Client secrets stored AES-256-GCM encrypted at rest.</li>
+      </ul>
+    </div>
+    <div class="ax-listcard">
+      <h3>Operationally</h3>
+      <ul class="ax-list yes">
+        <li>Rotation is a 30-second operation in Settings.</li>
+        <li>30 minutes from Azure registration to first sync.</li>
+        <li>On-demand or scheduled poll — your choice.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SCREENS -->
+<section id="screens" class="capmap">
+  <div class="reveal section-head">
+    <p class="section-label">Product at a glance</p>
+    <h2>Nine screens, one product.</h2>
+    <p class="section-sub">Real product UI captured from a live tenant — not mockups. This is what your planners see the day after your data lands.</p>
+  </div>
+
+  <div class="screen-grid reveal">
+    <div class="screen-tile"><span class="st-badge">B</span>BI Dashboard</div>
+    <div class="screen-tile"><span class="st-badge">D</span>Demand Planning</div>
+    <div class="screen-tile"><span class="st-badge">S</span>Supply / Replenishment</div>
+    <div class="screen-tile"><span class="st-badge">F</span>Finance / GP</div>
+    <div class="screen-tile"><span class="st-badge">A</span>Forecast Accuracy</div>
+    <div class="screen-tile"><span class="st-badge">X</span>External Signals — Insights</div>
+    <div class="screen-tile"><span class="st-badge">M</span>External Signals — Matrix</div>
+    <div class="screen-tile"><span class="st-badge">R</span>Reports</div>
+    <div class="screen-tile"><span class="st-badge">N</span>Ana — built-in AI</div>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="cta-section" id="contact">
+<section class="cta-section">
   <p class="section-label" style="color:var(--orange);position:relative;z-index:1">The next step is small</p>
   <h2>48-hour Proof of Value</h2>
-  <p>NDA only. No procurement, no MSA, no SOW. Send your last 24 months of data tonight — we run 12-model forecasts and a full 3-tier supply plan, then give you a 60-minute side-by-side readout on your A-class SKUs. If we don't beat what you have today, you walk with the export and we shake hands.</p>
+  <p>NDA only. No procurement, no MSA, no SOW. Send your last 24 months of data tonight — we'll have a side-by-side readout on your A-class SKUs in two business days.</p>
   <div class="cta-btns">
     <a href="mailto:rishi@anamind.com" class="btn-white">rishi@anamind.com</a>
-    <a href="mailto:sheetal@anamind.com" class="btn-outline-white">sheetal@anamind.com</a>
+    <a href="index.html" class="btn-outline-white">← Back to overview</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo"><img src="assets/planamind_logo.png" alt="Planamind"></div>
+  <a href="index.html" class="footer-logo"><img src="assets/planamind_logo.png" alt="Planamind"></a>
   <div class="footer-links">
-    <a href="appendix.html">Appendix &amp; reference</a>
-    <a href="#">Privacy</a>
-    <a href="#">Terms</a>
+    <a href="index.html">Overview</a>
     <a href="mailto:rishi@anamind.com">Contact</a>
     <a href="https://anamind.com">Anamind</a>
   </div>
@@ -1705,42 +1430,6 @@
 </footer>
 
 <script>
-  // Modal
-  function openModal() {
-    document.getElementById('loginModal').classList.add('open');
-    setTimeout(() => document.getElementById('orgInput').focus(), 100);
-  }
-  function closeModal() {
-    document.getElementById('loginModal').classList.remove('open');
-    document.getElementById('orgInput').value = '';
-    document.getElementById('orgPreview').textContent = 'Your login URL will appear here';
-    document.getElementById('orgError').classList.remove('show');
-  }
-  function handleOverlayClick(e) {
-    if (e.target === document.getElementById('loginModal')) closeModal();
-  }
-  function updatePreview() {
-    const val = document.getElementById('orgInput').value.trim().toLowerCase().replace(/[^a-z0-9-]/g, '');
-    const preview = document.getElementById('orgPreview');
-    document.getElementById('orgError').classList.remove('show');
-    if (val) {
-      preview.innerHTML = `You'll be taken to <strong style="color:var(--blue)">${val}.planamind.com</strong>`;
-    } else {
-      preview.textContent = 'Your login URL will appear here';
-    }
-  }
-  function goToOrg() {
-    const val = document.getElementById('orgInput').value.trim().toLowerCase().replace(/[^a-z0-9-]/g, '');
-    if (!val) {
-      document.getElementById('orgError').classList.add('show');
-      return;
-    }
-    window.location.href = `https://${val}.planamind.com/sign-in`;
-  }
-
-  // Escape key closes modal
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
@@ -1762,7 +1451,7 @@
     a.addEventListener('click', () => document.body.classList.remove('menu-open'));
   });
 
-  // Scrollspy — highlight the nav link for the section in view
+  // Scrollspy
   const navLinks = [...document.querySelectorAll('.nav-links a')];
   const spied = navLinks
     .map(a => document.querySelector(a.getAttribute('href')))
@@ -1776,16 +1465,6 @@
     });
   }, { rootMargin: '-45% 0px -50% 0px' });
   spied.forEach(s => spy.observe(s));
-
-  // Animated bars on load
-  const bars = document.querySelectorAll('.bar');
-  setTimeout(() => {
-    bars.forEach((b, i) => {
-      b.style.opacity = '0';
-      b.style.transition = `height 0.4s ${i * 0.04}s ease, opacity 0.3s ${i * 0.04}s`;
-      setTimeout(() => { b.style.opacity = b.classList.contains('dashed') ? '0.6' : (b.classList.contains('forecast') ? '0.7' : '0.85'); }, 50);
-    });
-  }, 700);
 </script>
 </body>
 </html>
