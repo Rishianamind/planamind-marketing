@@ -10,13 +10,15 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --blue: #1E3B8B;
+    --blue: #1a4fd8;
+    --blue-dark: #0f1b3d;
     --orange: #F97216;
+    --green: #16a34a;
     --light: #F4F6FB;
     --white: #ffffff;
     --text: #0f1b3d;
     --muted: #6b7899;
-    --border: rgba(30,59,139,0.1);
+    --border: rgba(26,79,216,0.1);
     --maxw: 1240px;
     --gut: max(4rem, calc((100% - var(--maxw)) / 2));
   }
@@ -30,6 +32,8 @@
     background: var(--white);
     color: var(--text);
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   /* NAV */
@@ -68,7 +72,7 @@
     border: 1.5px solid var(--border);
     transition: border-color 0.2s, color 0.2s;
   }
-  .nav-login:hover { border-color: var(--blue); color: var(--blue); }
+  .nav-login:hover { border-color: var(--blue); color: var(--blue); background: rgba(26,79,216,0.04); }
 
   .nav-cta {
     background: var(--blue);
@@ -109,7 +113,7 @@
     position: absolute;
     bottom: -150px; left: 10%;
     width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(30,59,139,0.06) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(26,79,216,0.06) 0%, transparent 70%);
     border-radius: 50%;
   }
 
@@ -117,8 +121,8 @@
 
   .hero-badge {
     display: inline-flex; align-items: center; gap: 0.5rem;
-    background: rgba(30,59,139,0.08);
-    border: 1px solid rgba(30,59,139,0.15);
+    background: rgba(26,79,216,0.08);
+    border: 1px solid rgba(26,79,216,0.15);
     border-radius: 100px;
     padding: 0.35rem 1rem;
     font-size: 0.78rem;
@@ -206,7 +210,7 @@
   .dashboard-card {
     background: white;
     border-radius: 16px;
-    box-shadow: 0 24px 80px rgba(30,59,139,0.12), 0 4px 16px rgba(0,0,0,0.06);
+    box-shadow: 0 24px 80px rgba(26,79,216,0.12), 0 4px 16px rgba(0,0,0,0.06);
     padding: 2rem;
     width: 100%;
     max-width: 440px;
@@ -226,7 +230,7 @@
   }
 
   .card-badge {
-    background: rgba(30,59,139,0.08);
+    background: rgba(26,79,216,0.08);
     color: var(--blue);
     font-size: 0.72rem;
     font-weight: 600;
@@ -305,15 +309,22 @@
   }
   .trust-logos {
     display: flex; justify-content: center; align-items: center;
-    gap: 3rem; flex-wrap: wrap;
+    gap: 0.8rem; flex-wrap: wrap;
   }
   .trust-logo {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.1rem;
-    color: #bbc5e0;
-    font-weight: 400;
-    letter-spacing: -0.01em;
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border: 1.5px solid var(--border);
+    border-radius: 100px;
+    background: var(--white);
+    transition: border-color 0.2s, color 0.2s;
   }
+  .trust-logo:hover { border-color: var(--blue); color: var(--blue); }
 
   /* FEATURES */
   section { padding: 6rem var(--gut); }
@@ -359,7 +370,7 @@
   }
   .feature-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(30,59,139,0.1);
+    box-shadow: 0 12px 40px rgba(26,79,216,0.1);
   }
 
   .feature-icon {
@@ -464,7 +475,7 @@
 
   /* CTA */
   .cta-section {
-    background: linear-gradient(135deg, #0f1b3d 0%, var(--blue) 60%, #1a4fa0 100%);
+    background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 60%, #4067e8 100%);
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -574,23 +585,7 @@
     transform: translateY(0);
   }
 
-  /* NAV ACTIONS */
-  .nav-actions { display: flex; align-items: center; gap: 0.8rem; }
 
-  .nav-login {
-    color: var(--blue);
-    font-size: 0.88rem;
-    font-weight: 600;
-    text-decoration: none;
-    padding: 0.58rem 1.2rem;
-    border-radius: 6px;
-    border: 1.5px solid var(--border);
-    cursor: pointer;
-    background: transparent;
-    font-family: 'DM Sans', sans-serif;
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .nav-login:hover { border-color: var(--blue); background: rgba(30,59,139,0.04); }
 
   /* MODAL OVERLAY */
   .modal-overlay {
@@ -762,7 +757,7 @@
   .pillar {
     background: white; border: 1px solid var(--border);
     border-radius: 12px; padding: 1.2rem;
-    box-shadow: 0 4px 16px rgba(30,59,139,0.05);
+    box-shadow: 0 4px 16px rgba(26,79,216,0.05);
   }
   .pillar-val {
     font-family: 'DM Serif Display', serif;
@@ -778,7 +773,7 @@
   .section-head.center .section-sub { margin-left: auto; margin-right: auto; }
 
   /* PROBLEM */
-  .problem { background: #0f1b3d; color: white; }
+  .problem { background: var(--blue-dark); color: white; }
   .problem h2 { color: white; }
   .problem .section-label { color: var(--orange); }
   .problem .section-sub { color: rgba(255,255,255,0.6); }
@@ -831,7 +826,7 @@
     display: flex; gap: 1.2rem;
     transition: transform 0.2s, box-shadow 0.2s;
   }
-  .intel-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(30,59,139,0.09); }
+  .intel-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(26,79,216,0.09); }
   .intel-num {
     width: 36px; height: 36px; flex-shrink: 0;
     background: var(--blue); color: white;
@@ -880,13 +875,13 @@
     font-weight: 700; color: var(--text); background: var(--light);
     font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em;
   }
-  table.compare thead th:last-child { color: var(--blue); }
+  table.compare thead th:last-child { color: white; background: var(--blue); border-radius: 0 13px 0 0; }
   table.compare td:first-child { font-weight: 600; color: var(--text); width: 26%; }
   table.compare td.them { color: var(--muted); }
   table.compare td.us { color: var(--text); font-weight: 500; }
   table.compare td.us::before { content: '✓ '; color: #16a34a; font-weight: 700; }
   table.compare tr:last-child td { border-bottom: none; }
-  table.compare td.us-col { background: rgba(30,59,139,0.03); }
+  table.compare td.us-col { background: rgba(26,79,216,0.04); border-left: 2px solid rgba(26,79,216,0.12); }
 
   /* OUTCOMES + TESTIMONIALS */
   .outcomes-grid {
@@ -1079,6 +1074,19 @@
     .quote-card, .persona-card, .intel-card, .roi-panel { padding: 1.6rem; }
     .footer-links { flex-wrap: wrap; justify-content: center; gap: 1.2rem; }
   }
+
+  /* ── Utilities ─────────────────────────────────────── */
+  .bg-light { background: var(--light); }
+  .no { color: #dc2626; font-weight: 700; }
+
+  /* Section label colour on dark/coloured sections */
+  .how .section-label { color: var(--orange); }
+  .cta-section .section-label { color: var(--orange); position: relative; z-index: 1; }
+
+  /* Keyboard focus rings */
+  a:focus-visible,
+  button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
+
 </style>
 </head>
 <body>
@@ -1105,13 +1113,12 @@
 <!-- LOGIN MODAL -->
 <div class="modal-overlay" id="loginModal" onclick="handleOverlayClick(event)">
   <div class="modal">
-    <button class="modal-close" onclick="closeModal()">✕</button>
+    <button class="modal-close" aria-label="Close" onclick="closeModal()">&times;</button>
     <div class="modal-logo"><img src="assets/planamind_logo.png" alt="Planamind"></div>
     <p class="modal-subtitle">Enter your organisation name to continue</p>
 
     <label for="orgInput">Organisation name</label>
     <div class="org-input-wrap">
-      <span class="org-suffix" style="border-right:1.5px solid var(--border);border-left:none;background:var(--light);padding:0.75rem 0.9rem;font-size:0.88rem;color:var(--muted);font-weight:500;white-space:nowrap;user-select:none;border-right:1.5px solid rgba(30,59,139,0.1)"></span>
       <input
         type="text"
         id="orgInput"
@@ -1398,7 +1405,7 @@
 </section>
 
 <!-- WHY WE WIN -->
-<section>
+<section class="bg-light">
   <div class="reveal section-head">
     <p class="section-label">Why we win</p>
     <h2>Same capabilities. Smarter AI.<br>10× cheaper.</h2>
@@ -1417,7 +1424,7 @@
       <tbody>
         <tr>
           <td>Forecast accuracy recommendations</td>
-          <td class="them">✗ Not available</td>
+          <td class="them"><span class="no">✗</span> Not available</td>
           <td class="us us-col">Pattern classification + ranked recs, holdout-validated</td>
         </tr>
         <tr>
@@ -1555,7 +1562,7 @@
 <!-- SETUP & DEPLOYMENT -->
 <section class="how" id="how">
   <div class="reveal section-head">
-    <p class="section-label" style="color:rgba(249,114,22,0.9)">Setup &amp; deployment</p>
+    <p class="section-label">Setup &amp; deployment</p>
     <h2>From contract to production<br>in days, not quarters.</h2>
     <p class="section-sub">Onboarding into Planamind looks more like Notion than an ERP implementation. Multi-tenant SaaS — going live is configuration, not a project.</p>
   </div>
@@ -1636,7 +1643,7 @@
 </section>
 
 <!-- WHAT CHANGES FOR YOU -->
-<section>
+<section class="bg-light">
   <div class="reveal section-head">
     <p class="section-label">What changes for you</p>
     <h2>Same product, three<br>different wins.</h2>
@@ -1682,7 +1689,7 @@
 
 <!-- CTA -->
 <section class="cta-section" id="contact">
-  <p class="section-label" style="color:var(--orange);position:relative;z-index:1">The next step is small</p>
+  <p class="section-label">The next step is small</p>
   <h2>48-hour Proof of Value</h2>
   <p>NDA only. No procurement, no MSA, no SOW. Send your last 24 months of data tonight — we run 12-model forecasts and a full 3-tier supply plan, then give you a 60-minute side-by-side readout on your A-class SKUs. If we don't beat what you have today, you walk with the export and we shake hands.</p>
   <div class="cta-btns">
