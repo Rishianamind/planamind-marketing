@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Planamind — Supply Chain Planning, Reimagined</title>
+<title>Planamind — Business Planning, Reimagined</title>
 <link rel="icon" type="image/png" href="assets/apple-touch-icon.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -67,10 +67,13 @@
     font-size: 0.88rem;
     font-weight: 600;
     text-decoration: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
+    padding: 0.55rem 1.2rem;
+    border-radius: 100px;
     border: 1.5px solid var(--border);
-    transition: border-color 0.2s, color 0.2s;
+    background: transparent;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
   }
   .nav-login:hover { border-color: var(--blue); color: var(--blue); background: rgba(26,79,216,0.04); }
 
@@ -78,13 +81,13 @@
     background: var(--blue);
     color: white;
     padding: 0.6rem 1.5rem;
-    border-radius: 6px;
+    border-radius: 100px;
     font-size: 0.88rem;
     font-weight: 600;
     text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
   }
-  .nav-cta:hover { background: var(--orange); transform: translateY(-1px); }
+  .nav-cta:hover { background: var(--orange); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(249,114,22,0.25); }
 
   /* HERO */
   .hero {
@@ -145,9 +148,9 @@
 
   h1 {
     font-family: 'DM Serif Display', serif;
-    font-size: clamp(2.8rem, 5vw, 4.2rem);
-    line-height: 1.08;
-    letter-spacing: -0.03em;
+    font-size: clamp(3rem, 5.4vw, 4.6rem);
+    line-height: 1.04;
+    letter-spacing: -0.035em;
     color: var(--text);
     margin-bottom: 1.5rem;
     opacity: 0;
@@ -179,15 +182,16 @@
   .btn-primary {
     background: var(--orange);
     color: white;
-    padding: 0.85rem 2rem;
-    border-radius: 8px;
+    padding: 0.95rem 2.1rem;
+    border-radius: 100px;
     font-weight: 600;
     font-size: 0.95rem;
+    letter-spacing: 0.01em;
     text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 20px rgba(249,114,22,0.3);
+    transition: transform 0.25s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.25s, background 0.2s;
+    box-shadow: 0 2px 10px rgba(249,114,22,0.22);
   }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(249,114,22,0.4); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(249,114,22,0.32); background: #ff801f; }
 
   .btn-ghost {
     color: var(--blue);
@@ -327,7 +331,7 @@
   .trust-logo:hover { border-color: var(--blue); color: var(--blue); }
 
   /* FEATURES */
-  section { padding: 6rem var(--gut); }
+  section { padding: 7rem var(--gut); }
 
   .section-label {
     font-size: 0.78rem;
@@ -513,27 +517,28 @@
   .btn-white {
     background: white;
     color: var(--blue);
-    padding: 0.85rem 2rem;
-    border-radius: 8px;
+    padding: 0.95rem 2.1rem;
+    border-radius: 100px;
     font-weight: 600;
     font-size: 0.95rem;
     text-decoration: none;
-    transition: transform 0.2s;
+    transition: transform 0.25s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.25s;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
   }
-  .btn-white:hover { transform: translateY(-2px); }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,0.18); }
 
   .btn-outline-white {
     background: transparent;
     color: white;
     border: 1.5px solid rgba(255,255,255,0.35);
-    padding: 0.85rem 2rem;
-    border-radius: 8px;
+    padding: 0.95rem 2.1rem;
+    border-radius: 100px;
     font-weight: 600;
     font-size: 0.95rem;
     text-decoration: none;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, background 0.2s;
   }
-  .btn-outline-white:hover { border-color: white; }
+  .btn-outline-white:hover { border-color: white; background: rgba(255,255,255,0.08); }
 
   /* FOOTER */
   footer {
@@ -990,6 +995,71 @@
   .persona-card li { font-size: 0.86rem; color: var(--muted); line-height: 1.55; padding-left: 1.3rem; position: relative; }
   .persona-card li::before { content: '✓'; position: absolute; left: 0; color: #16a34a; font-weight: 700; }
 
+  /* PLANNING NAVIGATOR */
+  .navigator { background: var(--blue-dark); color: white; }
+  .navigator h2 { color: white; }
+  .navigator .section-label { color: var(--orange); }
+  .navigator .section-sub { color: rgba(255,255,255,0.6); }
+  .nudge-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .nudge-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-left: 3px solid var(--orange);
+    border-radius: 12px; padding: 1.8rem 2rem;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .nudge-card:hover { background: rgba(255,255,255,0.07); transform: translateY(-3px); }
+  .nudge-tag {
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--orange); margin-bottom: 0.6rem;
+  }
+  .nudge-card h3 { font-size: 1.1rem; color: white; margin-bottom: 0.5rem; font-weight: 600; }
+  .nudge-card p { font-size: 0.88rem; color: rgba(255,255,255,0.66); line-height: 1.6; }
+  .navigator-note {
+    text-align: center; margin-top: 2.8rem;
+    font-family: 'DM Serif Display', serif; font-style: italic;
+    color: rgba(255,255,255,0.82); font-size: clamp(1.05rem, 2vw, 1.3rem);
+    line-height: 1.5; max-width: 760px; margin-left: auto; margin-right: auto;
+  }
+
+  /* REGIONAL CONTACTS */
+  .regions {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1rem; max-width: 720px; margin: 2.5rem auto 0;
+    position: relative; z-index: 1;
+  }
+  .region {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 12px; padding: 1.1rem 0.8rem; text-decoration: none;
+    transition: background 0.2s, transform 0.2s, border-color 0.2s;
+  }
+  .region:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); border-color: rgba(255,255,255,0.3); }
+  .region-place { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.35rem; }
+  .region-email { font-size: 0.78rem; color: white; font-weight: 500; }
+
+  /* FUNCTIONS */
+  .func-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .func-card {
+    background: white; border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.9rem; position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .func-card:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(26,79,216,0.1); }
+  .func-head { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.4rem; }
+  .func-badge {
+    width: 42px; height: 42px; flex-shrink: 0; background: var(--blue); color: white;
+    border-radius: 11px; display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif; font-size: 1.25rem;
+  }
+  .func-card h3 { font-size: 1.08rem; color: var(--text); font-weight: 600; }
+  .func-tagline { font-size: 0.82rem; color: var(--orange); font-weight: 600; margin-bottom: 1.1rem; }
+  .func-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+  .func-card li { font-size: 0.86rem; color: var(--muted); line-height: 1.55; padding-left: 1.3rem; position: relative; }
+  .func-card li::before { content: '→'; position: absolute; left: 0; color: var(--orange); font-weight: 700; }
+  .func-card--accent { background: var(--light); border-color: rgba(26,79,216,0.18); }
+  .func-card--accent .func-badge { background: var(--orange); }
+
   /* POLISH */
   nav { transition: box-shadow 0.25s, background 0.25s, padding 0.25s; }
   nav.scrolled { box-shadow: 0 6px 28px rgba(15,27,61,0.07); padding-top: 0.9rem; padding-bottom: 0.9rem; }
@@ -1047,7 +1117,9 @@
     .cta-section { padding: 4.5rem 2rem; }
     .pillars { grid-template-columns: 1fr 1fr; max-width: none; }
     .problem-grid, .whynow-grid, .intel-grid, .quotes,
-    .roi-grid, .persona-grid { grid-template-columns: 1fr; }
+    .roi-grid, .persona-grid, .nudge-grid { grid-template-columns: 1fr; }
+    .func-grid { grid-template-columns: 1fr; }
+    .regions { grid-template-columns: 1fr 1fr; }
     .outcomes-grid { grid-template-columns: 1fr 1fr; }
     .timeline { grid-template-columns: 1fr 1fr; }
     .tl-step::after { display: none; }
@@ -1097,6 +1169,7 @@
   <ul class="nav-links">
     <li><a href="#problem">Why now</a></li>
     <li><a href="#intelligence">Intelligence</a></li>
+    <li><a href="#navigator">Navigator</a></li>
     <li><a href="#capabilities">Capabilities</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -1135,18 +1208,15 @@
     <p class="org-error" id="orgError">Please enter your organisation name.</p>
 
     <button class="modal-submit" onclick="goToOrg()">Continue →</button>
-
-    <div class="modal-divider">or</div>
-    <p class="modal-demo-link">Just exploring? <a href="https://demo.planamind.com/sign-in" target="_blank">Use the demo tenant</a></p>
   </div>
 </div>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-text">
-    <div class="hero-badge">Demand · Supply · MRP · Finance — one product</div>
-    <h1>The planning platform<br>that goes live<br><em>in 48 hours.</em></h1>
-    <p class="hero-sub">One upload. One product across demand, supply, MRP and finance — with Ana, an AI copilot in every screen. Live on your data in two business days, at one-tenth the cost of an enterprise incumbent.</p>
+    <div class="hero-badge">Enterprise planning, reinvented</div>
+    <h1>The business plan<br>that goes live<br><em>in 48 hours.</em></h1>
+    <p class="hero-sub">One product across demand, supply, MRP and finance — every forecast anchored to your AOP, with an AI copilot in every screen. Board target to plant floor on one number, live in two business days — at one-tenth the cost of an enterprise incumbent.</p>
     <div class="hero-actions">
       <a href="#contact" class="btn-primary">Start a 48-hour Proof of Value</a>
       <a href="#intelligence" class="btn-ghost">See the intelligence layer →</a>
@@ -1229,7 +1299,7 @@
 <section class="problem" id="problem">
   <div class="reveal section-head">
     <p class="section-label">Why planners are stuck</p>
-    <h2>Supply-chain planning is broken<br>in four predictable ways.</h2>
+    <h2>Business planning is broken<br>in four predictable ways.</h2>
     <p class="section-sub">And every one of them shows up in the next quarterly review.</p>
   </div>
 
@@ -1356,6 +1426,64 @@
   </div>
 </section>
 
+<!-- PLANNING NAVIGATOR -->
+<section class="navigator" id="navigator">
+  <div class="reveal section-head center">
+    <p class="section-label">Your planning navigator</p>
+    <h2>It doesn't just plan.<br>It corrects the route.</h2>
+    <p class="section-sub">Planamind surfaces the right decision at the right moment — before a gap becomes a regret. Ana watches every signal so your team doesn't have to.</p>
+  </div>
+
+  <div class="nudge-grid reveal">
+    <div class="nudge-card">
+      <div class="nudge-tag">Stock ageing</div>
+      <h3>Promo window in 3 weeks</h3>
+      <p>Oxis 6mcg in North is tracking 38 days of excess cover. Ana suggests bringing forward a promotional lift to clear it before expiry.</p>
+    </div>
+    <div class="nudge-card">
+      <div class="nudge-tag">Budget gap</div>
+      <h3>Revenue 8% below AOP — North</h3>
+      <p>Division North is tracking short of AOP through Q3. A forecast override and channel-mix recommendation are ready for review.</p>
+    </div>
+    <div class="nudge-card">
+      <div class="nudge-tag">Event window</div>
+      <h3>Competitor out of stock</h3>
+      <p>Brand X is out of stock in 3 regions. Ana recommends lifting the forecast on 5 SKUs by 15–20% for the next 6 weeks.</p>
+    </div>
+    <div class="nudge-card">
+      <div class="nudge-tag">Capital release</div>
+      <h3>Safety-stock savings available</h3>
+      <p>Forecast accuracy on A-class improved 4.1pp. Safety stock can be safely reduced — freeing working capital without service-level risk.</p>
+    </div>
+  </div>
+
+  <p class="navigator-note reveal">A planning system that doesn't depend on your team's expertise alone — it continuously builds it.</p>
+</section>
+
+<!-- BUILT FOR YOUR ANNUAL PLAN -->
+<section id="annualplan">
+  <div class="reveal section-head">
+    <p class="section-label">Built for your annual plan</p>
+    <h2>Forecasts are a means.<br>Hitting the AOP is the point.</h2>
+    <p class="section-sub">Most tools produce forecasts. Planamind produces outcomes — measured against what the board committed to achieve. Every module anchors to the same AOP number, so version conflicts and manual reconciliation disappear.</p>
+  </div>
+
+  <div class="whynow-grid reveal">
+    <div class="whynow-card">
+      <h3>Every forecast anchored to AOP</h3>
+      <p>Division budgets, revenue targets, and GP commitments are the reference point — not a separate spreadsheet. Demand, supply, and finance all read from the same number.</p>
+    </div>
+    <div class="whynow-card">
+      <h3>Gaps surface before they compound</h3>
+      <p>Live variance tracking against AOP. When actuals drift, Ana flags it early — with recovery options, not just a red number — updated on every override and upload.</p>
+    </div>
+    <div class="whynow-card">
+      <h3>Year-end regrets become preventable</h3>
+      <p>The goal isn't better forecasts for their own sake. It's closing each year having made the right calls at the right time — with corrective actions surfaced automatically.</p>
+    </div>
+  </div>
+</section>
+
 <!-- CAPABILITY MAP -->
 <section class="capmap" id="capabilities">
   <div class="reveal section-head">
@@ -1404,6 +1532,72 @@
   </div>
 </section>
 
+<!-- FUNCTIONS -->
+<section id="functions">
+  <div class="reveal section-head center">
+    <p class="section-label">One platform, every function</p>
+    <h2>Not a supply-chain tool.<br>A planning system for the business.</h2>
+    <p class="section-sub">Sales, marketing, supply chain, and finance work from a single plan — and leadership sees the whole business on one number.</p>
+  </div>
+
+  <div class="func-grid reveal">
+    <div class="func-card">
+      <div class="func-head"><div class="func-badge">◆</div><h3>Management</h3></div>
+      <div class="func-tagline">The whole business on one number.</div>
+      <ul>
+        <li>Board target, division AOP, and live gap-to-target on one screen.</li>
+        <li>Ana's monthly narrative: why last month moved, what's at risk this FY.</li>
+        <li>One version of the plan across every function — no reconciliation.</li>
+      </ul>
+    </div>
+    <div class="func-card">
+      <div class="func-head"><div class="func-badge">$</div><h3>Finance</h3></div>
+      <div class="func-tagline">Margin and cash, continuously.</div>
+      <ul>
+        <li>Revenue, COGS, GP, GP% and AOP variance from the same data.</li>
+        <li>Override a forecast — watch GP recompute instantly.</li>
+        <li>Working capital freed through defensible, simulation-backed safety stock.</li>
+      </ul>
+    </div>
+    <div class="func-card">
+      <div class="func-head"><div class="func-badge">↗</div><h3>Sales</h3></div>
+      <div class="func-tagline">Commit numbers you can hit.</div>
+      <ul>
+        <li>Demand consensus by channel, region, and customer.</li>
+        <li>Competitor OOS and event windows surfaced as upside to capture.</li>
+        <li>Promotion elasticity quantified before the number is committed.</li>
+      </ul>
+    </div>
+    <div class="func-card">
+      <div class="func-head"><div class="func-badge">◎</div><h3>Marketing</h3></div>
+      <div class="func-tagline">Launches and promos, with evidence.</div>
+      <ul>
+        <li>New-product forecasts from AI-scored reference SKUs.</li>
+        <li>Promotion and event impact modelled with elasticity and headroom.</li>
+        <li>Macro, weather, and public-event signals correlated to demand.</li>
+      </ul>
+    </div>
+    <div class="func-card">
+      <div class="func-head"><div class="func-badge">⬢</div><h3>Supply Chain</h3></div>
+      <div class="func-tagline">Service levels without the excess.</div>
+      <ul>
+        <li>3-tier daily simulation with BOM explosion and alternate-RM fallback.</li>
+        <li>Safety stock optimised per ABC service level, adopted in one click.</li>
+        <li>Ageing-stock and stockout risks flagged before they land.</li>
+      </ul>
+    </div>
+    <div class="func-card func-card--accent">
+      <div class="func-head"><div class="func-badge">A</div><h3>Ana ties it together</h3></div>
+      <div class="func-tagline">One AI across every desk.</div>
+      <ul>
+        <li>Grounded in your real SKU codes — no dashboards to build.</li>
+        <li>Explains, recommends, and attributes — in plain English.</li>
+        <li>The same intelligence, whichever function is looking.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <!-- WHY WE WIN -->
 <section class="bg-light">
   <div class="reveal section-head">
@@ -1422,6 +1616,16 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td>AOP / budget alignment</td>
+          <td class="them"><span class="no">✗</span> Separate module or manual tracking</td>
+          <td class="us us-col">Native — every forecast anchored to budget, live gap</td>
+        </tr>
+        <tr>
+          <td>Navigator AI — proactive nudges</td>
+          <td class="them"><span class="no">✗</span> Alerts only; no recovery actions</td>
+          <td class="us us-col">Ageing stock, budget gaps, event windows, safety-stock release</td>
+        </tr>
         <tr>
           <td>Forecast accuracy recommendations</td>
           <td class="them"><span class="no">✗</span> Not available</td>
@@ -1505,14 +1709,24 @@
 
   <div class="quotes reveal">
     <div class="quote-card">
-      <p>There was a need to decentralise demand planning across countries. The interface is user-friendly and intuitive — a plus point given that personnel with different backgrounds use it across geographies.</p>
-      <div class="quote-author">Asian Paints</div>
-      <div class="quote-meta">Anamind engagement — international demand planning</div>
+      <p>What truly sets Anamind apart is its AI-driven approach — built from the ground up with intelligence at its core, not bolted on. In a market requiring armies of consultants and months of customisation, Anamind stands out for its speed of deployment, ease of use, and genuine business impact.</p>
+      <div class="quote-author">Sandra Labinjoh</div>
+      <div class="quote-meta">Senior Supply Chain Planning Consultant · London</div>
     </div>
     <div class="quote-card">
-      <p>A fantastic collaborative planning tool that doesn't just forecast but drives consensus from top to bottom across functions. The graphical views with drilldowns are exactly what we needed for our S&amp;OP discussions.</p>
-      <div class="quote-author">Johnson &amp; Johnson</div>
-      <div class="quote-meta">Anamind engagement — S&amp;OP and demand planning</div>
+      <p>I was glad to experience its functionality first hand. An interesting product — excited to see the successes it will achieve in the various use cases.</p>
+      <div class="quote-author">Brian Okoth</div>
+      <div class="quote-meta">Head of Planning · Heineken Beverages · Kenya</div>
+    </div>
+    <div class="quote-card">
+      <p>Loved the latest demo of AI planning and the potential it holds.</p>
+      <div class="quote-author">Vasudha Jaiswal</div>
+      <div class="quote-meta">Director of Operations · Kenvue · Australia &amp; New Zealand</div>
+    </div>
+    <div class="quote-card">
+      <p>This is truly a business planning tool.</p>
+      <div class="quote-author">Nitin Jain</div>
+      <div class="quote-meta">Operations Director · Bacardi · India</div>
     </div>
   </div>
 </div>
@@ -1693,8 +1907,25 @@
   <h2>48-hour Proof of Value</h2>
   <p>NDA only. No procurement, no MSA, no SOW. Send your last 24 months of data tonight — we run 12-model forecasts and a full 3-tier supply plan, then give you a 60-minute side-by-side readout on your A-class SKUs. If we don't beat what you have today, you walk with the export and we shake hands.</p>
   <div class="cta-btns">
-    <a href="mailto:rishi@anamind.com" class="btn-white">rishi@anamind.com</a>
-    <a href="mailto:sheetal@anamind.com" class="btn-outline-white">sheetal@anamind.com</a>
+    <a href="mailto:rishi@anamind.com" class="btn-white">Start your Proof of Value</a>
+  </div>
+  <div class="regions">
+    <a class="region" href="mailto:sheetal@anamind.com">
+      <div class="region-place">India</div>
+      <div class="region-email">sheetal@anamind.com</div>
+    </a>
+    <a class="region" href="mailto:adam@anamind.com">
+      <div class="region-place">USA</div>
+      <div class="region-email">adam@anamind.com</div>
+    </a>
+    <a class="region" href="mailto:sandra@anamind.com">
+      <div class="region-place">Europe</div>
+      <div class="region-email">sandra@anamind.com</div>
+    </a>
+    <a class="region" href="mailto:apurva@anamind.com">
+      <div class="region-place">ANZ</div>
+      <div class="region-email">apurva@anamind.com</div>
+    </a>
   </div>
 </section>
 
@@ -1708,7 +1939,7 @@
     <a href="mailto:rishi@anamind.com">Contact</a>
     <a href="https://anamind.com">Anamind</a>
   </div>
-  <span class="footer-copy">Planamind is a product of Anamind · © 2026 Anamind. All rights reserved.</span>
+  <span class="footer-copy">Planamind is a product of Anamind LLC · © 2026 Anamind LLC. All rights reserved.</span>
 </footer>
 
 <script>
