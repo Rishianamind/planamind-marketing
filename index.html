@@ -1220,7 +1220,7 @@
       />
       <span class="org-suffix">.planamind.com</span>
     </div>
-    <p class="org-hint" id="orgPreview">Your login URL will appear here</p>
+    <p class="org-hint" id="orgPreview">For existing customers only</p>
     <p class="org-error" id="orgError">Please enter your organisation name.</p>
 
     <button class="modal-submit" onclick="goToOrg()">Continue →</button>
@@ -1967,7 +1967,7 @@
   function closeModal() {
     document.getElementById('loginModal').classList.remove('open');
     document.getElementById('orgInput').value = '';
-    document.getElementById('orgPreview').textContent = 'Your login URL will appear here';
+    document.getElementById('orgPreview').textContent = 'For existing customers only';
     document.getElementById('orgError').classList.remove('show');
   }
   function handleOverlayClick(e) {
@@ -1980,7 +1980,7 @@
     if (val) {
       preview.innerHTML = `You'll be taken to <strong style="color:var(--blue)">${val}.planamind.com</strong>`;
     } else {
-      preview.textContent = 'Your login URL will appear here';
+      preview.textContent = 'For existing customers only';
     }
   }
   function goToOrg() {
