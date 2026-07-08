@@ -7,2039 +7,491 @@
 <link rel="icon" type="image/png" href="assets/apple-touch-icon.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --blue: #1a4fd8;
-    --blue-dark: #0f1b3d;
-    --orange: #F97216;
-    --green: #16a34a;
-    --light: #F4F6FB;
-    --white: #ffffff;
-    --text: #0f1b3d;
-    --muted: #4a5573;
-    --border: rgba(26,79,216,0.1);
-    --maxw: 1240px;
-    --gut: max(4rem, calc((100% - var(--maxw)) / 2));
+    --navy: #2c3075;
+    --orange: #f19120;
+    --platinum: #e7e6dd;
+    --black: #07080f;
+    --off-white: #f5f4ef;
+    --mid: #1a1d3a;
+    --dim: #3d4263;
+    --orange-dim: #d4771a;
+    --glass: rgba(44,48,117,0.18);
+    --glow: rgba(241,145,32,0.22);
   }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--white);
-    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    background: var(--black);
+    color: var(--platinum);
     overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
 
-  /* NAV */
+  /* ── GRAIN OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.5;
+  }
+
+  /* ── NAV ── */
   nav {
-    position: fixed; top: 0; left: 0; right: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
     z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.2rem var(--gut);
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(7,8,15,0.8);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(241,145,32,0.12);
+    transition: all 0.3s;
   }
 
-  .logo { display: flex; align-items: center; }
-  .logo img { height: 36px; width: auto; display: block; }
+  .nav-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+  .nav-logo span.ana { color: var(--navy); filter: brightness(2.5); }
+  .nav-logo span.mind { color: var(--orange); }
 
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
   .nav-links a {
+    color: rgba(231,230,221,0.6);
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 500;
-    color: var(--muted);
+    letter-spacing: 0.02em;
     transition: color 0.2s;
   }
-  .nav-links a:hover { color: var(--blue); }
-
-  .nav-actions { display: flex; align-items: center; gap: 0.8rem; }
-
-  .nav-login {
-    color: var(--blue);
-    font-size: 0.88rem;
-    font-weight: 600;
-    text-decoration: none;
-    padding: 0.55rem 1.2rem;
-    border-radius: 100px;
-    border: 1.5px solid var(--border);
-    background: transparent;
-    cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-    transition: border-color 0.2s, color 0.2s, background 0.2s;
-  }
-  .nav-login:hover { border-color: var(--blue); color: var(--blue); background: rgba(26,79,216,0.04); }
+  .nav-links a:hover { color: var(--orange); }
 
   .nav-cta {
-    background: var(--blue);
-    color: white;
-    padding: 0.6rem 1.5rem;
-    border-radius: 100px;
-    font-size: 0.88rem;
-    font-weight: 600;
+    background: var(--orange);
+    color: var(--black);
+    padding: 9px 22px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 700;
     text-decoration: none;
-    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
   }
-  .nav-cta:hover { background: var(--orange); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(249,114,22,0.25); }
+  .nav-cta:hover { background: #ffaa40; transform: translateY(-1px); box-shadow: 0 4px 20px var(--glow); }
 
-  /* HERO */
+  /* ── HERO ── */
   .hero {
     min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    padding: 9rem var(--gut) 5rem;
-    gap: 4rem;
-    background: var(--light);
+    justify-content: center;
+    text-align: center;
+    padding: 120px 40px 80px;
     position: relative;
     overflow: hidden;
   }
 
+  /* Animated grid background */
   .hero::before {
     content: '';
     position: absolute;
-    top: -200px; right: -200px;
-    width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(249,114,22,0.08) 0%, transparent 70%);
-    border-radius: 50%;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(44,48,117,0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(44,48,117,0.15) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridDrift 20s linear infinite;
   }
 
+  @keyframes gridDrift {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(60px); }
+  }
+
+  /* Radial glow */
   .hero::after {
     content: '';
     position: absolute;
-    bottom: -150px; left: 10%;
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(26,79,216,0.06) 0%, transparent 70%);
-    border-radius: 50%;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 500px;
+    background: radial-gradient(ellipse, rgba(241,145,32,0.12) 0%, transparent 70%);
+    pointer-events: none;
   }
 
-  .hero-text { position: relative; z-index: 2; }
-
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    background: rgba(26,79,216,0.08);
-    border: 1px solid rgba(26,79,216,0.15);
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(241,145,32,0.1);
+    border: 1px solid rgba(241,145,32,0.3);
+    color: var(--orange);
+    padding: 6px 16px;
     border-radius: 100px;
-    padding: 0.35rem 1rem;
     font-size: 0.78rem;
     font-weight: 600;
-    color: var(--blue);
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    margin-bottom: 1.8rem;
-    opacity: 0;
-    animation: fadeUp 0.6s 0.1s forwards;
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 0.8s ease both;
   }
 
-  .hero-badge::before {
+  .hero-tag::before {
     content: '';
-    width: 6px; height: 6px;
-    background: var(--orange);
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-    animation: pulse 1.8s infinite;
+    background: var(--orange);
+    animation: pulse 2s infinite;
   }
 
-  h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(3rem, 5.4vw, 4.6rem);
-    line-height: 1.04;
-    letter-spacing: -0.035em;
-    color: var(--text);
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.25s forwards;
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
   }
 
-  h1 em {
-    font-style: italic;
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(3rem, 6.5vw, 6rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    max-width: 900px;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+
+  .hero h1 em {
+    font-style: normal;
     color: var(--orange);
+    position: relative;
+  }
+
+  .hero h1 em::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--orange);
+    border-radius: 2px;
+    animation: underlineGrow 1s 0.8s ease both;
+    transform-origin: left;
+  }
+
+  @keyframes underlineGrow {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
   }
 
   .hero-sub {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: var(--muted);
-    max-width: 480px;
-    margin-bottom: 2.5rem;
-    font-weight: 400;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.4s forwards;
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    color: rgba(231,230,221,0.65);
+    max-width: 600px;
+    line-height: 1.65;
+    margin-top: 24px;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 0.8s 0.2s ease both;
   }
 
   .hero-actions {
-    display: flex; gap: 1rem; align-items: center;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.55s forwards;
+    display: flex;
+    gap: 16px;
+    margin-top: 44px;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 0.8s 0.3s ease both;
   }
 
   .btn-primary {
     background: var(--orange);
-    color: white;
-    padding: 0.95rem 2.1rem;
-    border-radius: 100px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    letter-spacing: 0.01em;
+    color: var(--black);
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 1rem;
     text-decoration: none;
-    transition: transform 0.25s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.25s, background 0.2s;
-    box-shadow: 0 2px 10px rgba(249,114,22,0.22);
-  }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(249,114,22,0.32); background: #ff801f; }
-
-  .btn-ghost {
-    color: var(--blue);
-    font-weight: 600;
-    font-size: 0.95rem;
-    text-decoration: none;
-    display: flex; align-items: center; gap: 0.4rem;
-    transition: gap 0.2s;
-  }
-  .btn-ghost:hover { gap: 0.7rem; }
-
-  /* HERO VISUAL */
-  .hero-visual {
-    position: relative; z-index: 2;
-    display: flex; justify-content: center; align-items: center;
-    opacity: 0;
-    animation: fadeIn 1s 0.6s forwards;
-  }
-
-  .dashboard-card {
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 24px 80px rgba(26,79,216,0.12), 0 4px 16px rgba(0,0,0,0.06);
-    padding: 2rem;
-    width: 100%;
-    max-width: 440px;
-  }
-
-  .card-header {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 1.5rem;
-  }
-
-  .card-title {
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--muted);
-  }
-
-  .card-badge {
-    background: rgba(26,79,216,0.08);
-    color: var(--blue);
-    font-size: 0.72rem;
-    font-weight: 600;
-    padding: 0.2rem 0.6rem;
-    border-radius: 100px;
-  }
-
-  .forecast-bars {
-    display: flex; align-items: flex-end; gap: 6px;
-    height: 100px;
-    margin-bottom: 1.5rem;
-  }
-
-  .bar {
-    flex: 1;
-    border-radius: 4px 4px 0 0;
-    transition: height 0.3s;
-  }
-  .bar.actual { background: var(--blue); opacity: 0.85; }
-  .bar.forecast { background: var(--orange); opacity: 0.7; }
-  .bar.forecast.dashed {
-    background: repeating-linear-gradient(
-      -45deg,
-      var(--orange) 0px, var(--orange) 3px,
-      transparent 3px, transparent 6px
-    );
-    opacity: 0.6;
-  }
-
-  .chart-legend {
-    display: flex; gap: 1.2rem; margin-bottom: 1.5rem;
-  }
-  .legend-item {
-    display: flex; align-items: center; gap: 0.4rem;
-    font-size: 0.75rem; color: var(--muted); font-weight: 500;
-  }
-  .legend-dot { width: 8px; height: 8px; border-radius: 2px; }
-
-  .metrics-row {
-    display: grid; grid-template-columns: 1fr 1fr 1fr;
-    gap: 1rem;
-    padding-top: 1.2rem;
-    border-top: 1px solid var(--border);
-  }
-
-  .metric { text-align: center; }
-  .metric-val {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.5rem;
-    color: var(--text);
-    display: block;
-  }
-  .metric-val.up { color: #16a34a; }
-  .metric-val.orange { color: var(--orange); }
-  .metric-label {
-    font-size: 0.72rem;
-    color: var(--muted);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  /* LOGOS / TRUST */
-  .trust {
-    padding: 3rem var(--gut);
-    border-bottom: 1px solid var(--border);
-    text-align: center;
-  }
-  .trust-label {
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-  }
-  .trust-logos {
-    display: flex; justify-content: center; align-items: center;
-    gap: 0.8rem; flex-wrap: wrap;
-  }
-  .trust-logo {
-    display: inline-block;
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--blue);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    padding: 0.45rem 1.1rem;
-    border: 1.5px solid rgba(26,79,216,0.16);
-    border-radius: 100px;
-    background: rgba(26,79,216,0.08);
-    transition: background 0.2s, border-color 0.2s, transform 0.2s;
-  }
-  .trust-logo:hover { background: rgba(26,79,216,0.14); border-color: var(--blue); transform: translateY(-1px); }
-
-  /* FEATURES */
-  section { padding: 7rem var(--gut); }
-
-  .section-label {
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--orange);
-    font-weight: 700;
-    margin-bottom: 0.8rem;
-  }
-
-  h2 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(2rem, 3.5vw, 3rem);
-    line-height: 1.1;
-    letter-spacing: -0.025em;
-    color: var(--text);
-    margin-bottom: 1rem;
-  }
-
-  .section-sub {
-    font-size: 1.05rem;
-    color: var(--muted);
-    line-height: 1.7;
-    max-width: 520px;
-    margin-bottom: 3.5rem;
-  }
-
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
-
-  .feature-card {
-    background: var(--light);
-    border-radius: 12px;
-    padding: 2rem;
-    border: 1px solid var(--border);
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .feature-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(26,79,216,0.1);
-  }
-
-  .feature-icon {
-    width: 44px; height: 44px;
-    background: var(--blue);
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 1.2rem;
-    font-size: 1.3rem;
-  }
-
-  .feature-card h3 {
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 0.6rem;
+    transition: all 0.25s;
     letter-spacing: -0.01em;
-  }
-
-  .feature-card p {
-    font-size: 0.88rem;
-    color: var(--muted);
-    line-height: 1.65;
-  }
-
-  /* HOW IT WORKS */
-  .how { background: var(--blue-dark); color: white; }
-  .how h2 { color: white; }
-  .how .section-sub { color: rgba(255,255,255,0.65); }
-
-  .steps {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    margin-top: 1rem;
-  }
-
-  .step {
-    padding: 2rem 2rem 2rem 0;
-    position: relative;
-  }
-
-  .step:not(:last-child)::after {
-    content: '→';
-    position: absolute;
-    right: 0; top: 2.3rem;
-    color: rgba(255,255,255,0.2);
-    font-size: 1.2rem;
-  }
-
-  .step-num {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.5rem;
-    color: var(--orange);
-    line-height: 1;
-    margin-bottom: 0.8rem;
-    opacity: 0.9;
-  }
-
-  .step h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    color: white;
-    margin-bottom: 0.5rem;
-  }
-
-  .step p {
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.6);
-    line-height: 1.6;
-  }
-
-  /* STATS */
-  .stats {
-    background: white;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 5rem var(--gut);
-  }
-
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    text-align: center;
-  }
-
-  .stat-val {
-    font-family: 'DM Serif Display', serif;
-    font-size: 3rem;
-    color: var(--blue);
-    line-height: 1;
-    margin-bottom: 0.4rem;
-  }
-  .stat-val span { color: var(--orange); }
-
-  .stat-label {
-    font-size: 0.85rem;
-    color: var(--muted);
-    font-weight: 500;
-  }
-
-  /* CTA */
-  .cta-section {
-    background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 60%, #4067e8 100%);
-    text-align: center;
     position: relative;
     overflow: hidden;
   }
 
-  .cta-section::before {
+  .btn-primary::after {
     content: '';
-    position: absolute;
-    top: -100px; left: 50%;
-    transform: translateX(-50%);
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(249,114,22,0.15) 0%, transparent 65%);
-    border-radius: 50%;
-  }
-
-  .cta-section h2 {
-    color: white;
-    position: relative; z-index: 1;
-    max-width: 600px;
-    margin: 0 auto 1rem;
-  }
-
-  .cta-section p {
-    color: rgba(255,255,255,0.65);
-    font-size: 1rem;
-    margin-bottom: 2.5rem;
-    position: relative; z-index: 1;
-  }
-
-  .cta-btns {
-    display: flex; gap: 1rem; justify-content: center;
-    position: relative; z-index: 1;
-  }
-
-  .btn-white {
-    background: white;
-    color: var(--blue);
-    padding: 0.95rem 2.1rem;
-    border-radius: 100px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    text-decoration: none;
-    transition: transform 0.25s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.25s;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
-  }
-  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,0.18); }
-
-  .btn-outline-white {
-    background: transparent;
-    color: white;
-    border: 1.5px solid rgba(255,255,255,0.35);
-    padding: 0.95rem 2.1rem;
-    border-radius: 100px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    text-decoration: none;
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .btn-outline-white:hover { border-color: white; background: rgba(255,255,255,0.08); }
-
-  /* FOOTER */
-  footer {
-    padding: 3rem var(--gut);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid var(--border);
-  }
-
-  .footer-logo img { height: 30px; width: auto; display: block; }
-
-  .footer-links { display: flex; gap: 2rem; }
-  .footer-links a {
-    text-decoration: none;
-    font-size: 0.85rem;
-    color: var(--muted);
-    transition: color 0.2s;
-  }
-  .footer-links a:hover { color: var(--blue); }
-
-  .footer-copy {
-    font-size: 0.8rem;
-    color: #7a84a4;
-  }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.7); }
-  }
-
-  /* Scroll reveal */
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s, transform 0.6s;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-
-
-  /* MODAL OVERLAY */
-  .modal-overlay {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(15,27,61,0.55);
-    backdrop-filter: blur(6px);
-    z-index: 200;
-    align-items: center;
-    justify-content: center;
-  }
-  .modal-overlay.open { display: flex; }
-
-  .modal {
-    background: white;
-    border-radius: 16px;
-    padding: 2.5rem;
-    width: 100%;
-    max-width: 420px;
-    box-shadow: 0 32px 80px rgba(15,27,61,0.2);
-    position: relative;
-    animation: modalIn 0.25s ease;
-  }
-
-  @keyframes modalIn {
-    from { opacity: 0; transform: translateY(16px) scale(0.97); }
-    to   { opacity: 1; transform: translateY(0) scale(1); }
-  }
-
-  .modal-close {
-    position: absolute; top: 1.2rem; right: 1.2rem;
-    background: none; border: none; cursor: pointer;
-    color: var(--muted); font-size: 1.2rem; line-height: 1;
-    transition: color 0.2s;
-  }
-  .modal-close:hover { color: var(--text); }
-
-  .modal-logo { margin-bottom: 0.3rem; }
-  .modal-logo img { height: 34px; width: auto; display: block; }
-
-  .modal-subtitle {
-    font-size: 0.85rem;
-    color: var(--muted);
-    margin-bottom: 2rem;
-  }
-
-  .modal label {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 0.4rem;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-  }
-
-  .org-input-wrap {
-    display: flex;
-    align-items: center;
-    border: 1.5px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: border-color 0.2s;
-    margin-bottom: 0.5rem;
-  }
-  .org-input-wrap:focus-within { border-color: var(--blue); }
-
-  .org-prefix {
-    background: var(--light);
-    padding: 0.75rem 0.9rem;
-    font-size: 0.88rem;
-    color: var(--muted);
-    font-weight: 500;
-    border-right: 1.5px solid var(--border);
-    white-space: nowrap;
-    user-select: none;
-  }
-
-  .org-suffix {
-    background: var(--light);
-    padding: 0.75rem 0.9rem;
-    font-size: 0.88rem;
-    color: var(--muted);
-    font-weight: 500;
-    border-left: 1.5px solid var(--border);
-    white-space: nowrap;
-    user-select: none;
-  }
-
-  #orgInput {
-    flex: 1;
-    border: none;
-    outline: none;
-    padding: 0.75rem 0.8rem;
-    font-size: 0.95rem;
-    font-family: 'DM Sans', sans-serif;
-    color: var(--text);
-    font-weight: 500;
-    background: white;
-    min-width: 0;
-  }
-  #orgInput::placeholder { color: #c0c8e0; }
-
-  .org-hint {
-    font-size: 0.76rem;
-    color: var(--muted);
-    margin-bottom: 1.5rem;
-  }
-
-  .org-error {
-    font-size: 0.76rem;
-    color: #dc2626;
-    margin-bottom: 1rem;
-    display: none;
-  }
-  .org-error.show { display: block; }
-
-  .modal-submit {
-    width: 100%;
-    background: var(--blue);
-    color: white;
-    border: none;
-    padding: 0.85rem;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    font-family: 'DM Sans', sans-serif;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
-  }
-  .modal-submit:hover { background: var(--orange); transform: translateY(-1px); }
-
-  .modal-divider {
-    text-align: center;
-    font-size: 0.78rem;
-    color: #97a0bc;
-    margin: 1.2rem 0;
-    position: relative;
-  }
-  .modal-divider::before, .modal-divider::after {
-    content: '';
-    position: absolute;
-    top: 50%; width: 38%;
-    height: 1px;
-    background: var(--border);
-  }
-  .modal-divider::before { left: 0; }
-  .modal-divider::after { right: 0; }
-
-  .modal-demo-link {
-    display: block;
-    text-align: center;
-    font-size: 0.83rem;
-    color: var(--muted);
-  }
-  .modal-demo-link a {
-    color: var(--orange);
-    font-weight: 600;
-    text-decoration: none;
-  }
-  .modal-demo-link a:hover { text-decoration: underline; }
-
-  /* PILLARS STRIP */
-  .pillars {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem; margin-top: 2.5rem; max-width: 560px;
-    opacity: 0; animation: fadeUp 0.7s 0.7s forwards;
-  }
-  .pillar {
-    background: white; border: 1.5px solid rgba(26,79,216,0.16);
-    border-radius: 14px; padding: 1.3rem 1.4rem;
-    box-shadow: 0 6px 20px rgba(26,79,216,0.06);
-    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-  }
-  .pillar:hover { transform: translateY(-3px); border-color: rgba(26,79,216,0.32); box-shadow: 0 12px 30px rgba(26,79,216,0.1); }
-  .pillar-val {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.7rem; color: var(--blue); line-height: 1;
-    margin-bottom: 0.3rem;
-  }
-  .pillar-val span { color: var(--orange); }
-  .pillar-label { font-size: 0.76rem; color: var(--muted); line-height: 1.4; font-weight: 500; }
-
-  /* GENERIC CENTERED HEADER */
-  .section-head { max-width: 640px; }
-  .section-head.center { margin: 0 auto 3.5rem; text-align: center; }
-  .section-head.center .section-sub { margin-left: auto; margin-right: auto; }
-
-  /* PROBLEM */
-  .problem { background: var(--blue-dark); color: white; }
-  .problem h2 { color: white; }
-  .problem .section-label { color: var(--orange); }
-  .problem .section-sub { color: rgba(255,255,255,0.6); }
-  .problem-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-  .problem-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 12px; padding: 2rem;
-    display: flex; gap: 1.3rem;
-  }
-  .problem-num {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2rem; color: var(--orange); line-height: 1;
-    flex-shrink: 0;
-  }
-  .problem-card h3 { font-size: 1.05rem; color: white; margin-bottom: 0.5rem; font-weight: 600; }
-  .problem-card p { font-size: 0.88rem; color: rgba(255,255,255,0.6); line-height: 1.65; }
-
-  /* WHY NOW */
-  .whynow-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-  .whynow-card { padding-top: 1.2rem; border-top: 3px solid var(--orange); }
-  .whynow-card h3 { font-size: 1.05rem; color: var(--text); margin-bottom: 0.6rem; font-weight: 600; }
-  .whynow-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
-
-  /* STATEMENT BAND */
-  .statement {
-    background: var(--light);
-    text-align: center;
-    padding: 6rem var(--gut);
-  }
-  .statement p {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(1.5rem, 3vw, 2.3rem);
-    line-height: 1.4; color: var(--text);
-    max-width: 900px; margin: 0 auto;
-    letter-spacing: -0.02em;
-  }
-  .statement em { font-style: italic; color: var(--orange); }
-  .statement .statement-note {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem; color: var(--muted);
-    margin-top: 1.5rem; font-style: normal;
-  }
-
-  /* INTELLIGENCE LAYER */
-  .intel-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-  .intel-card {
-    background: var(--light); border: 1px solid var(--border);
-    border-radius: 12px; padding: 1.8rem;
-    display: flex; gap: 1.2rem;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .intel-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(26,79,216,0.09); }
-  .intel-num {
-    width: 36px; height: 36px; flex-shrink: 0;
-    background: var(--blue); color: white;
-    border-radius: 9px; display: flex; align-items: center; justify-content: center;
-    font-weight: 600; font-size: 0.95rem;
-  }
-  .intel-card h3 { font-size: 1rem; color: var(--text); margin-bottom: 0.4rem; font-weight: 600; }
-  .intel-card p { font-size: 0.86rem; color: var(--muted); line-height: 1.6; }
-
-  /* CAPABILITY MAP */
-  .capmap { background: var(--blue-dark); color: white; }
-  .capmap h2 { color: white; }
-  .capmap .section-label { color: rgba(249,114,22,0.95); }
-  .capmap .section-sub { color: rgba(255,255,255,0.6); }
-  .cap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; }
-  .cap-card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 12px; padding: 1.5rem;
-    transition: background 0.2s;
-  }
-  .cap-card:hover { background: rgba(255,255,255,0.09); }
-  .cap-head { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.7rem; }
-  .cap-badge {
-    width: 32px; height: 32px; flex-shrink: 0;
-    background: var(--orange); color: white;
-    border-radius: 8px; display: flex; align-items: center; justify-content: center;
-    font-family: 'DM Serif Display', serif; font-size: 1rem;
-  }
-  .cap-card h3 { font-size: 0.98rem; color: white; font-weight: 600; }
-  .cap-tag {
-    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em;
-    background: var(--orange); color: white; padding: 0.1rem 0.4rem;
-    border-radius: 4px; margin-left: 0.4rem; vertical-align: middle;
-  }
-  .cap-card p { font-size: 0.82rem; color: rgba(255,255,255,0.62); line-height: 1.6; }
-
-  /* COMPARISON TABLE */
-  .compare-wrap { overflow-x: auto; border-radius: 14px; border: 1px solid var(--border); }
-  table.compare { width: 100%; border-collapse: collapse; min-width: 680px; background: white; }
-  table.compare th, table.compare td {
-    text-align: left; padding: 1rem 1.3rem; font-size: 0.88rem;
-    border-bottom: 1px solid var(--border); vertical-align: top;
-  }
-  table.compare thead th {
-    font-weight: 700; color: var(--text); background: var(--light);
-    font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em;
-  }
-  table.compare thead th:last-child { color: white; background: var(--blue); border-radius: 0 13px 0 0; }
-  table.compare td:first-child { font-weight: 600; color: var(--text); width: 26%; }
-  table.compare td.them { color: var(--muted); }
-  table.compare td.us { color: var(--text); font-weight: 500; }
-  table.compare td.us::before { content: '✓ '; color: #16a34a; font-weight: 700; }
-  table.compare tr:last-child td { border-bottom: none; }
-  table.compare td.us-col { background: rgba(26,79,216,0.04); border-left: 2px solid rgba(26,79,216,0.12); }
-
-  /* OUTCOMES + TESTIMONIALS */
-  .outcomes-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem; text-align: center; margin-bottom: 4rem;
-  }
-  .outcomes-grid > div {
-    background: white; border: 1.5px solid rgba(26,79,216,0.16);
-    border-radius: 14px; padding: 1.9rem 1.4rem;
-    box-shadow: 0 6px 20px rgba(26,79,216,0.05);
-    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-  }
-  .outcomes-grid > div:hover { transform: translateY(-3px); border-color: rgba(26,79,216,0.32); box-shadow: 0 14px 34px rgba(26,79,216,0.1); }
-  .outcome-val {
-    font-family: 'DM Serif Display', serif; font-size: 2.6rem;
-    color: var(--blue); line-height: 1; margin-bottom: 0.5rem;
-  }
-  .outcome-val span { color: var(--orange); }
-  .outcome-label { font-size: 0.85rem; color: var(--text); font-weight: 600; margin-bottom: 0.3rem; }
-  .outcome-sub { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
-
-  .quotes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-  .quote-card {
-    background: var(--light); border: 1px solid var(--border);
-    border-radius: 14px; padding: 2.2rem; position: relative;
-  }
-  .quote-card::before {
-    content: '\201C'; font-family: 'DM Serif Display', serif;
-    font-size: 4rem; color: var(--orange); opacity: 0.3;
-    position: absolute; top: 1rem; left: 1.3rem; line-height: 1;
-  }
-  .quote-card p {
-    font-size: 0.98rem; color: var(--text); line-height: 1.7;
-    margin: 1.5rem 0 1.3rem; position: relative; z-index: 1;
-  }
-  .quote-author { font-weight: 700; color: var(--blue); font-size: 0.92rem; }
-  .quote-meta { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
-
-  /* ROI */
-  .roi { background: var(--light); }
-  .roi-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 2rem; }
-  .roi-panel { background: white; border: 1px solid var(--border); border-radius: 14px; padding: 2rem; }
-  .roi-panel h3 {
-    font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em;
-    color: var(--muted); font-weight: 700; margin-bottom: 1.3rem;
-  }
-  .roi-line {
-    display: flex; justify-content: space-between; gap: 1rem;
-    padding: 0.7rem 0; border-bottom: 1px dashed var(--border); font-size: 0.9rem;
-  }
-  .roi-line:last-child { border-bottom: none; }
-  .roi-line span:first-child { color: var(--muted); }
-  .roi-line span:last-child { color: var(--text); font-weight: 600; }
-  .roi-results { display: grid; grid-template-rows: repeat(3, 1fr); gap: 1.2rem; }
-  .roi-result {
-    background: var(--blue); color: white; border-radius: 14px; padding: 1.6rem 2rem;
-    display: flex; flex-direction: column; justify-content: center;
-  }
-  .roi-result.orange { background: var(--orange); }
-  .roi-result .rr-val { font-family: 'DM Serif Display', serif; font-size: 2rem; line-height: 1; margin-bottom: 0.3rem; }
-  .roi-result .rr-label { font-size: 0.82rem; font-weight: 600; margin-bottom: 0.3rem; }
-  .roi-result .rr-sub { font-size: 0.76rem; opacity: 0.8; line-height: 1.5; }
-  .roi-total {
-    margin-top: 2rem; background: #0f1b3d; color: white;
-    border-radius: 14px; padding: 1.6rem 2rem; font-size: 0.95rem; line-height: 1.7;
-  }
-  .roi-total strong { color: var(--orange); }
-
-  /* TIMELINE */
-  .timeline {
-    display: grid; grid-template-columns: repeat(5, 1fr);
-    gap: 0; margin-top: 1rem;
-  }
-  .tl-step { padding: 2rem 1.5rem 2rem 0; position: relative; }
-  .tl-step:not(:last-child)::after {
-    content: '→'; position: absolute; right: 0.5rem; top: 2.2rem;
-    color: rgba(255,255,255,0.2); font-size: 1.1rem;
-  }
-  .tl-day {
-    display: inline-block; font-size: 0.72rem; font-weight: 700;
-    letter-spacing: 0.06em; color: var(--orange);
-    background: rgba(249,114,22,0.12); padding: 0.25rem 0.7rem;
-    border-radius: 100px; margin-bottom: 0.9rem;
-  }
-  .tl-step h3 { font-size: 1rem; color: white; margin-bottom: 0.5rem; font-weight: 600; }
-  .tl-step p { font-size: 0.83rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
-
-  /* PRICING */
-  .price-rows { display: flex; flex-direction: column; gap: 1rem; max-width: 720px; }
-  .price-row { display: grid; grid-template-columns: 130px 1fr 130px; align-items: center; gap: 1.2rem; }
-  .price-name { font-weight: 600; color: var(--text); font-size: 0.92rem; }
-  .price-track { background: var(--light); border-radius: 100px; height: 14px; overflow: hidden; }
-  .price-fill { height: 100%; border-radius: 100px; background: linear-gradient(90deg, #c0c8e0, #8b97bf); }
-  .price-row.us .price-fill { background: linear-gradient(90deg, var(--orange), #ffa052); }
-  .price-row.us .price-name { color: var(--blue); }
-  .price-amt { font-size: 0.88rem; font-weight: 600; color: var(--text); text-align: right; }
-  .price-row.us .price-amt { color: var(--orange); }
-  .price-why { margin-top: 3rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem 2.5rem; max-width: 760px; }
-  .price-why div { font-size: 0.9rem; color: var(--muted); line-height: 1.6; padding-left: 1.5rem; position: relative; }
-  .price-why div::before { content: '→'; position: absolute; left: 0; color: var(--orange); font-weight: 700; }
-
-  /* PERSONAS */
-  .persona-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-  .persona-card {
-    background: var(--light); border: 1.5px solid rgba(26,79,216,0.16);
-    border-radius: 14px; padding: 2rem;
-    box-shadow: 0 6px 20px rgba(26,79,216,0.05);
-    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-  }
-  .persona-card:hover { transform: translateY(-3px); border-color: rgba(26,79,216,0.32); box-shadow: 0 14px 34px rgba(26,79,216,0.1); }
-  .persona-badge {
-    width: 46px; height: 46px; background: var(--blue); color: white;
-    border-radius: 12px; display: flex; align-items: center; justify-content: center;
-    font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin-bottom: 1.2rem;
-  }
-  .persona-card h3 { font-size: 1.1rem; color: var(--text); margin-bottom: 0.3rem; font-weight: 600; }
-  .persona-tagline { font-size: 0.85rem; color: var(--orange); font-weight: 600; margin-bottom: 1.2rem; }
-  .persona-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
-  .persona-card li { font-size: 0.86rem; color: var(--muted); line-height: 1.55; padding-left: 1.3rem; position: relative; }
-  .persona-card li::before { content: '✓'; position: absolute; left: 0; color: #16a34a; font-weight: 700; }
-
-  /* PLANNING NAVIGATOR */
-  .navigator { background: var(--blue-dark); color: white; }
-  .navigator h2 { color: white; }
-  .navigator .section-label { color: var(--orange); }
-  .navigator .section-sub { color: rgba(255,255,255,0.6); }
-  .nudge-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-  .nudge-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-left: 3px solid var(--orange);
-    border-radius: 12px; padding: 1.8rem 2rem;
-    transition: background 0.2s, transform 0.2s;
-  }
-  .nudge-card:hover { background: rgba(255,255,255,0.07); transform: translateY(-3px); }
-  .nudge-tag {
-    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--orange); margin-bottom: 0.6rem;
-  }
-  .nudge-card h3 { font-size: 1.1rem; color: white; margin-bottom: 0.5rem; font-weight: 600; }
-  .nudge-card p { font-size: 0.88rem; color: rgba(255,255,255,0.66); line-height: 1.6; }
-  .navigator-note {
-    text-align: center; margin-top: 2.8rem;
-    font-family: 'DM Serif Display', serif; font-style: italic;
-    color: rgba(255,255,255,0.82); font-size: clamp(1.05rem, 2vw, 1.3rem);
-    line-height: 1.5; max-width: 760px; margin-left: auto; margin-right: auto;
-  }
-
-  /* REGIONAL CONTACTS */
-  .regions {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 1rem; max-width: 720px; margin: 2.5rem auto 0;
-    position: relative; z-index: 1;
-  }
-  .region {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.14);
-    border-radius: 12px; padding: 1.1rem 0.8rem; text-decoration: none;
-    transition: background 0.2s, transform 0.2s, border-color 0.2s;
-  }
-  .region:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); border-color: rgba(255,255,255,0.3); }
-  .region-place { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.35rem; }
-  .region-email { font-size: 0.78rem; color: white; font-weight: 500; }
-
-  /* FUNCTIONS */
-  .func-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-  .func-card {
-    background: white; border: 1.5px solid rgba(26,79,216,0.16);
-    border-radius: 14px; padding: 1.9rem; position: relative;
-    box-shadow: 0 6px 20px rgba(26,79,216,0.05);
-    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-  }
-  .func-card:hover { transform: translateY(-4px); border-color: rgba(26,79,216,0.32); box-shadow: 0 14px 40px rgba(26,79,216,0.1); }
-  .func-head { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.4rem; }
-  .func-badge {
-    width: 42px; height: 42px; flex-shrink: 0; background: var(--blue); color: white;
-    border-radius: 11px; display: flex; align-items: center; justify-content: center;
-    font-family: 'DM Serif Display', serif; font-size: 1.25rem;
-  }
-  .func-card h3 { font-size: 1.08rem; color: var(--text); font-weight: 600; }
-  .func-tagline { font-size: 0.82rem; color: var(--orange); font-weight: 600; margin-bottom: 1.1rem; }
-  .func-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
-  .func-card li { font-size: 0.86rem; color: var(--muted); line-height: 1.55; padding-left: 1.3rem; position: relative; }
-  .func-card li::before { content: '→'; position: absolute; left: 0; color: var(--orange); font-weight: 700; }
-  .func-card--accent { background: var(--light); border-color: rgba(26,79,216,0.18); }
-  .func-card--accent .func-badge { background: var(--orange); }
-
-  /* POLISH */
-  nav { transition: box-shadow 0.25s, background 0.25s, padding 0.25s; }
-  nav.scrolled { box-shadow: 0 6px 28px rgba(15,27,61,0.07); padding-top: 0.9rem; padding-bottom: 0.9rem; }
-  [id] { scroll-margin-top: 92px; }
-  .nav-links a { position: relative; }
-  .nav-links a.active { color: var(--blue); }
-  .nav-links a.active::after {
-    content: ''; position: absolute; left: 0; right: 0; bottom: -6px;
-    height: 2px; background: var(--orange); border-radius: 2px;
-  }
-
-  /* Mobile menu toggle */
-  .nav-toggle {
-    display: none; background: none; border: none; cursor: pointer;
-    width: 30px; height: 22px; position: relative; padding: 0;
-  }
-  .nav-toggle span {
-    display: block; position: absolute; left: 0; width: 100%; height: 2px;
-    background: var(--blue); border-radius: 2px; transition: transform 0.25s, opacity 0.2s, top 0.25s;
-  }
-  .nav-toggle span:nth-child(1) { top: 2px; }
-  .nav-toggle span:nth-child(2) { top: 10px; }
-  .nav-toggle span:nth-child(3) { top: 18px; }
-  body.menu-open .nav-toggle span:nth-child(1) { top: 10px; transform: rotate(45deg); }
-  body.menu-open .nav-toggle span:nth-child(2) { opacity: 0; }
-  body.menu-open .nav-toggle span:nth-child(3) { top: 10px; transform: rotate(-45deg); }
-
-  @media (max-width: 900px) {
-    nav { padding: 1rem 2rem; flex-wrap: wrap; }
-    .nav-toggle { display: block; order: 2; margin-left: auto; }
-    .nav-links {
-      display: none; order: 4; width: 100%; flex-direction: column;
-      gap: 0; margin-top: 0.8rem; border-top: 1px solid var(--border); padding-top: 0.3rem;
-    }
-    body.menu-open .nav-links { display: flex; }
-    .nav-links li { width: 100%; border-bottom: 1px solid var(--border); }
-    .nav-links li:last-child { border-bottom: none; }
-    .nav-links a { display: block; padding: 0.95rem 0; font-size: 1rem; }
-    .nav-links a.active::after { display: none; }
-    .nav-actions { display: none; order: 5; width: 100%; }
-    body.menu-open .nav-actions { display: flex; margin-top: 0.9rem; gap: 0.8rem; }
-    body.menu-open .nav-actions .nav-login,
-    body.menu-open .nav-actions .nav-cta { flex: 1; text-align: center; }
-    .hero { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; gap: 2.5rem; }
-    .hero-sub { max-width: none; }
-    .hero-visual { display: none; }
-    section { padding: 4.5rem 2rem; }
-    .features-grid { grid-template-columns: 1fr 1fr; }
-    .steps { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-    .step::after { display: none; }
-    .stats-grid { grid-template-columns: 1fr 1fr; }
-    footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2.5rem 2rem; }
-    .trust { padding: 2.5rem 2rem; }
-    .stats { padding: 3.5rem 2rem; }
-    .cta-section { padding: 4.5rem 2rem; }
-    .pillars { grid-template-columns: 1fr 1fr; max-width: none; }
-    .problem-grid, .whynow-grid, .intel-grid, .quotes,
-    .roi-grid, .persona-grid, .nudge-grid { grid-template-columns: 1fr; }
-    .func-grid { grid-template-columns: 1fr; }
-    .regions { grid-template-columns: 1fr 1fr; }
-    .outcomes-grid { grid-template-columns: 1fr 1fr; }
-    .timeline { grid-template-columns: 1fr 1fr; }
-    .tl-step::after { display: none; }
-    .cap-grid { grid-template-columns: 1fr 1fr; }
-    .statement { padding: 4rem 2rem; }
-    .price-row { grid-template-columns: 110px 1fr 88px; gap: 0.8rem; }
-    .price-why { grid-template-columns: 1fr; gap: 0.9rem; }
-  }
-
-  @media (max-width: 600px) {
-    h1 { font-size: clamp(2.3rem, 9.5vw, 3rem); }
-    .hero { padding: 6.5rem 1.5rem 2.5rem; }
-    section { padding: 3.5rem 1.5rem; }
-    .trust { padding-left: 1.5rem; padding-right: 1.5rem; }
-    footer { padding: 2.5rem 1.5rem; }
-    .stats, .statement, .cta-section { padding-left: 1.5rem; padding-right: 1.5rem; }
-    .features-grid, .cap-grid, .timeline, .outcomes-grid,
-    .stats-grid, .pillars { grid-template-columns: 1fr; }
-    .pillar { display: flex; align-items: baseline; gap: 0.7rem; }
-    .pillar-val { margin-bottom: 0; }
-    .problem-card { flex-direction: column; gap: 0.8rem; }
-    .price-row { grid-template-columns: 1fr auto; gap: 0.2rem 1rem; align-items: baseline; }
-    .price-track { display: none; }
-    .quote-card, .persona-card, .intel-card, .roi-panel { padding: 1.6rem; }
-    .footer-links { flex-wrap: wrap; justify-content: center; gap: 1.2rem; }
-  }
-
-  /* ── Utilities ─────────────────────────────────────── */
-  .bg-light { background: var(--light); }
-  .no { color: #dc2626; font-weight: 700; }
-
-  /* Section label colour on dark/coloured sections */
-  .how .section-label { color: var(--orange); }
-  .cta-section .section-label { color: var(--orange); position: relative; z-index: 1; }
-
-  /* Keyboard focus rings */
-  a:focus-visible,
-  button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
-
-</style>
-</head>
-<body>
-
-<!-- NAV -->
-<nav>
-  <div class="logo"><img src="assets/planamind_logo.png" alt="Planamind"></div>
-  <ul class="nav-links">
-    <li><a href="#problem">Why now</a></li>
-    <li><a href="#intelligence">Intelligence</a></li>
-    <li><a href="#navigator">Navigator</a></li>
-    <li><a href="#capabilities">Capabilities</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <div class="nav-actions">
-    <button class="nav-login" onclick="openModal()">Log in</button>
-    <a href="#contact" class="nav-cta">Proof of Value</a>
-  </div>
-  <button class="nav-toggle" aria-label="Toggle menu" onclick="document.body.classList.toggle('menu-open')">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<!-- LOGIN MODAL -->
-<div class="modal-overlay" id="loginModal" onclick="handleOverlayClick(event)">
-  <div class="modal">
-    <button class="modal-close" aria-label="Close" onclick="closeModal()">&times;</button>
-    <div class="modal-logo"><img src="assets/planamind_logo.png" alt="Planamind"></div>
-    <p class="modal-subtitle">Enter your organisation name to continue</p>
-
-    <label for="orgInput">Organisation name</label>
-    <div class="org-input-wrap">
-      <input
-        type="text"
-        id="orgInput"
-        placeholder="e.g. sunpharma"
-        autocomplete="off"
-        autocapitalize="none"
-        spellcheck="false"
-        oninput="updatePreview()"
-        onkeydown="if(event.key==='Enter') goToOrg()"
-      />
-      <span class="org-suffix">.planamind.com</span>
-    </div>
-    <p class="org-hint" id="orgPreview">For existing customers only</p>
-    <p class="org-error" id="orgError">Please enter your organisation name.</p>
-
-    <button class="modal-submit" onclick="goToOrg()">Continue →</button>
-  </div>
-</div>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-text">
-    <div class="hero-badge">Enterprise planning, reinvented</div>
-    <h1>The business plan<br>that goes live<br><em>in 48 hours.</em></h1>
-    <p class="hero-sub">One product across demand, supply, MRP and finance — every forecast anchored to your AOP, with an AI copilot in every screen. Board target to plant floor on one number, live in two business days — at one-tenth the cost of an enterprise incumbent.</p>
-    <div class="hero-actions">
-      <a href="#contact" class="btn-primary">Start a 48-hour Proof of Value</a>
-      <a href="#intelligence" class="btn-ghost">See the intelligence layer →</a>
-    </div>
-
-    <div class="pillars">
-      <div class="pillar">
-        <div class="pillar-val">48<span>h</span></div>
-        <div class="pillar-label">from upload to working plan</div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-val">~10<span>×</span></div>
-        <div class="pillar-label">lower TCO than SAP IBP / Kinaxis</div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-val">Ana</div>
-        <div class="pillar-label">AI copilot in every screen</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="hero-visual">
-    <div class="dashboard-card">
-      <div class="card-header">
-        <span class="card-title">Demand · 12-Model AutoML</span>
-        <span class="card-badge">Live</span>
-      </div>
-      <div class="forecast-bars">
-        <div class="bar actual" style="height:52px"></div>
-        <div class="bar actual" style="height:64px"></div>
-        <div class="bar actual" style="height:58px"></div>
-        <div class="bar actual" style="height:75px"></div>
-        <div class="bar actual" style="height:68px"></div>
-        <div class="bar actual" style="height:82px"></div>
-        <div class="bar forecast" style="height:88px"></div>
-        <div class="bar forecast dashed" style="height:94px"></div>
-        <div class="bar forecast dashed" style="height:91px"></div>
-        <div class="bar forecast dashed" style="height:98px"></div>
-      </div>
-      <div class="chart-legend">
-        <div class="legend-item">
-          <div class="legend-dot" style="background:var(--blue)"></div> Actuals
-        </div>
-        <div class="legend-item">
-          <div class="legend-dot" style="background:var(--orange)"></div> Forecast
-        </div>
-      </div>
-      <div class="metrics-row">
-        <div class="metric">
-          <span class="metric-val up">7.9%</span>
-          <span class="metric-label">WAPE</span>
-        </div>
-        <div class="metric">
-          <span class="metric-val orange">3-tier</span>
-          <span class="metric-label">Supply sim</span>
-        </div>
-        <div class="metric">
-          <span class="metric-val">12</span>
-          <span class="metric-label">Models</span>
-        </div>
-      </div>
-    </div>
-  </div>
+< truncated lines 249-1240 >
+        <th>Capability</th>
+        <th>Legacy Planning Platforms</th>
+        <th>Planamind ✦</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>AOP / budget alignment</td>
+        <td><span class="cross">✗</span> Separate module or manual</td>
+        <td><span class="check">✓</span> Native — every forecast anchored</td>
+      </tr>
+      <tr>
+        <td>Navigator AI — proactive nudges</td>
+        <td><span class="cross">✗</span> Alerts only; no recovery actions</td>
+        <td><span class="check">✓</span> Ageing stock, budget gaps, events</td>
+      </tr>
+      <tr>
+        <td>Forecast accuracy recommendations</td>
+        <td><span class="cross">✗</span> Not available</td>
+        <td><span class="check">✓</span> Ranked recs, holdout-validated</td>
+      </tr>
+      <tr>
+        <td>Safety stock intelligence</td>
+        <td>Rule-based, manual inputs</td>
+        <td><span class="check">✓</span> ABC-routed, one-click Δ</td>
+      </tr>
+      <tr>
+        <td>New product analogy AI</td>
+        <td>Manual, planner's judgement</td>
+        <td><span class="check">✓</span> Scored with reasoning narrative</td>
+      </tr>
+      <tr>
+        <td>External signal regression</td>
+        <td>Add-on or separate module</td>
+        <td><span class="check">✓</span> Built-in: R², lag, p-value, bands</td>
+      </tr>
+      <tr>
+        <td>Monthly review narrative</td>
+        <td>KPI dashboard only</td>
+        <td><span class="check">✓</span> AI explains vs forecast + AOP</td>
+      </tr>
+      <tr>
+        <td>Demand forecasting models</td>
+        <td>3–5 statistical + ML</td>
+        <td><span class="check">✓</span> 12-model AutoML ensemble</td>
+      </tr>
+      <tr>
+        <td>Time-to-value</td>
+        <td>9–18 months + SI engagement</td>
+        <td><span class="check">✓</span> 48 hours, configuration only</td>
+      </tr>
+      <tr>
+        <td>Annual software cost</td>
+        <td>$0.5M–$4M+ depending on vendor</td>
+        <td><span class="check">✓</span> ~1/10th</td>
+      </tr>
+    </tbody>
+  </table>
 </section>
 
-<!-- TRUST -->
-<div class="trust">
-  <p class="trust-label">A pedigree built across industries — Anamind planning engagements</p>
-  <div class="trust-logos">
-    <span class="trust-logo">Automotive</span>
-    <span class="trust-logo">F&amp;B</span>
-    <span class="trust-logo">Consumer Goods</span>
-    <span class="trust-logo">Fashion</span>
-    <span class="trust-logo">Interiors</span>
-    <span class="trust-logo">Pharma</span>
-  </div>
-</div>
-
-<!-- PROBLEM -->
-<section class="problem" id="problem">
-  <div class="reveal section-head">
-    <p class="section-label">Why planners are stuck</p>
-    <h2>Business planning is broken<br>in four predictable ways.</h2>
-    <p class="section-sub">And every one of them shows up in the next quarterly review.</p>
-  </div>
-
-  <div class="problem-grid reveal">
-    <div class="problem-card">
-      <div class="problem-num">1</div>
-      <div>
-        <h3>Tool sprawl</h3>
-        <p>Demand in one system, supply in another, finance in a third, dashboards in a fourth. Every cycle is reconciled in email and Excel. Reality lives in spreadsheets nobody can audit.</p>
-      </div>
-    </div>
-    <div class="problem-card">
-      <div class="problem-num">2</div>
-      <div>
-        <h3>Implementation paralysis</h3>
-        <p>Incumbent deployments run 6–24 months and burn millions before the first planner logs in. Half never reach steady-state — and the SI invoice still arrives.</p>
-      </div>
-    </div>
-    <div class="problem-card">
-      <div class="problem-num">3</div>
-      <div>
-        <h3>Knowledge that walks out</h3>
-        <p>Senior planners hold the heuristics. When they leave, the institution starts over. Replacement training takes 9–18 months, with stockouts in between.</p>
-      </div>
-    </div>
-    <div class="problem-card">
-      <div class="problem-num">4</div>
-      <div>
-        <h3>AI theatre</h3>
-        <p>Every legacy vendor now ships an "AI assistant" that mostly rewords a chart caption. None of them pre-empt the next planning decision in your SKU codes.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WHY NOW -->
-<section>
-  <div class="reveal section-head">
-    <p class="section-label">Why now</p>
-    <h2>Three shifts have made the old<br>planning playbook untenable.</h2>
-    <p class="section-sub">And the cost of staying on it now compounds quarter on quarter.</p>
-  </div>
-
-  <div class="whynow-grid reveal">
-    <div class="whynow-card">
-      <h3>Volatility is the new baseline</h3>
-      <p>Post-COVID supply shocks, geopolitical disruption, and climate-led demand swings have turned monthly cycles into weekly fire-fighting. Models built for steady-state demand miss too often.</p>
-    </div>
-    <div class="whynow-card">
-      <h3>Working capital under pressure</h3>
-      <p>Inflation and rate cycles have made every dollar of inventory more expensive to carry. CFOs are pushing for safety stock that is defensible — not whatever the planner has done for years.</p>
-    </div>
-    <div class="whynow-card">
-      <h3>AI cleared the cost barrier</h3>
-      <p>12-model ensembles and conversational AI used to need a data-science team. Today they cost cents per SKU and ship as software. Vendors that don't pass that saving on are about to look very expensive.</p>
-    </div>
-  </div>
-</section>
-
-<!-- STATEMENT -->
-<div class="statement">
-  <p>A demand, supply, and finance planning platform — with a built-in AI copilot — that goes live on your data in <em>two business days</em>, at <em>one-tenth the cost</em> of an enterprise-class incumbent.</p>
-  <p class="statement-note">— Read every section below as proof of this claim. —</p>
-</div>
-
-<!-- INTELLIGENCE LAYER -->
-<section id="intelligence">
-  <div class="reveal section-head">
-    <p class="section-label">The intelligence layer</p>
-    <h2>Seven planning intelligences<br>your current tool doesn't have.</h2>
-    <p class="section-sub">None of these require a data-science team, a consultant, or a second platform. They ship in Planamind on day one.</p>
-  </div>
-
-  <div class="intel-grid reveal">
-    <div class="intel-card">
-      <div class="intel-num">1</div>
-      <div>
-        <h3>12-Model AutoML</h3>
-        <p>SES, Holt-Winters, Theta, ARIMA, Prophet-lite, MLP, Neural Network, Ensemble, Croston — not just the 3 models your incumbent ships. Auto-picks the winner per SKU on MAPE, with manual override and instant visual feedback.</p>
-      </div>
-    </div>
-    <div class="intel-card">
-      <div class="intel-num">2</div>
-      <div>
-        <h3>Forecast Accuracy Recommendations</h3>
-        <p>Classifies every SKU by pattern — intermittent, biased, wrong-model, volatile, or healthy — and ranks improvements by expected portfolio FA gain. Each rec is pre-validated on a 6-month holdout before it surfaces.</p>
-      </div>
-    </div>
-    <div class="intel-card">
-      <div class="intel-num">3</div>
-      <div>
-        <h3>Safety Stock Intelligence</h3>
-        <p>Recommends optimal safety-stock days per SKU using your ABC service-level targets (98/95/90). Shows recommended vs. current as a Δ column. The planner adopts in one click.</p>
-      </div>
-    </div>
-    <div class="intel-card">
-      <div class="intel-num">4</div>
-      <div>
-        <h3>New Product Analogies</h3>
-        <p>Scores candidate reference SKUs by hierarchy similarity, declining trend, and volume match — and produces a plain-English reasoning narrative, not just a code. Feeds the forecast engine from day one.</p>
-      </div>
-    </div>
-    <div class="intel-card">
-      <div class="intel-num">5</div>
-      <div>
-        <h3>External Signal Regression</h3>
-        <p>Auto-correlates macro indicators (PMI, CPI), weather, and cost series against your demand. Surfaces R², lag, p-value, and confidence bands so planners see statistical evidence before acting.</p>
-      </div>
-    </div>
-    <div class="intel-card">
-      <div class="intel-num">6</div>
-      <div>
-        <h3>Events Library &amp; Elasticity</h3>
-        <p>Models historical event impact — promotions, price changes, holidays — with elasticity coefficients and a Headroom KPI. Year-over-year event attribution is built in.</p>
-      </div>
-    </div>
-    <div class="intel-card">
-      <div class="intel-num">7</div>
-      <div>
-        <h3>Monthly Review Narrative</h3>
-        <p>Ana explains last month's performance against forecast and AOP, attributing the move to internal causes (model selection, overrides, channel mix) and external factors (macro signals, events). FY risks and opportunities surface automatically every cycle.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PLANNING NAVIGATOR -->
-<section class="navigator" id="navigator">
-  <div class="reveal section-head center">
-    <p class="section-label">Your planning navigator</p>
-    <h2>It doesn't just plan.<br>It corrects the route.</h2>
-    <p class="section-sub">Planamind surfaces the right decision at the right moment — before a gap becomes a regret. Ana watches every signal so your team doesn't have to.</p>
-  </div>
-
-  <div class="nudge-grid reveal">
-    <div class="nudge-card">
-      <div class="nudge-tag">Stock ageing</div>
-      <h3>Promo window in 3 weeks</h3>
-      <p>Oxis 6mcg in North is tracking 38 days of excess cover. Ana suggests bringing forward a promotional lift to clear it before expiry.</p>
-    </div>
-    <div class="nudge-card">
-      <div class="nudge-tag">Budget gap</div>
-      <h3>Revenue 8% below AOP — North</h3>
-      <p>Division North is tracking short of AOP through Q3. A forecast override and channel-mix recommendation are ready for review.</p>
-    </div>
-    <div class="nudge-card">
-      <div class="nudge-tag">Event window</div>
-      <h3>Competitor out of stock</h3>
-      <p>Brand X is out of stock in 3 regions. Ana recommends lifting the forecast on 5 SKUs by 15–20% for the next 6 weeks.</p>
-    </div>
-    <div class="nudge-card">
-      <div class="nudge-tag">Capital release</div>
-      <h3>Safety-stock savings available</h3>
-      <p>Forecast accuracy on A-class improved 4.1pp. Safety stock can be safely reduced — freeing working capital without service-level risk.</p>
-    </div>
-  </div>
-
-  <p class="navigator-note reveal">A planning system that doesn't depend on your team's expertise alone — it continuously builds it.</p>
-</section>
-
-<!-- BUILT FOR YOUR ANNUAL PLAN -->
-<section id="annualplan">
-  <div class="reveal section-head">
-    <p class="section-label">Built for your annual plan</p>
-    <h2>Forecasts are a means.<br>Hitting the AOP is the point.</h2>
-    <p class="section-sub">Most tools produce forecasts. Planamind produces outcomes — measured against what the board committed to achieve. Every module anchors to the same AOP number, so version conflicts and manual reconciliation disappear.</p>
-  </div>
-
-  <div class="whynow-grid reveal">
-    <div class="whynow-card">
-      <h3>Every forecast anchored to AOP</h3>
-      <p>Division budgets, revenue targets, and GP commitments are the reference point — not a separate spreadsheet. Demand, supply, and finance all read from the same number.</p>
-    </div>
-    <div class="whynow-card">
-      <h3>Gaps surface before they compound</h3>
-      <p>Live variance tracking against AOP. When actuals drift, Ana flags it early — with recovery options, not just a red number — updated on every override and upload.</p>
-    </div>
-    <div class="whynow-card">
-      <h3>Year-end regrets become preventable</h3>
-      <p>The goal isn't better forecasts for their own sake. It's closing each year having made the right calls at the right time — with corrective actions surfaced automatically.</p>
-    </div>
-  </div>
-</section>
-
-<!-- CAPABILITY MAP -->
-<section class="capmap" id="capabilities">
-  <div class="reveal section-head">
-    <p class="section-label">Capability map</p>
-    <h2>One product. Nine capabilities.<br>One AI that connects them all.</h2>
-    <p class="section-sub">No add-on licences, no roadmap-slide commitments.</p>
-  </div>
-
-  <div class="cap-grid reveal">
-    <div class="cap-card">
-      <div class="cap-head"><div class="cap-badge">D</div><h3>Demand</h3></div>
-      <p>12-model AutoML ensemble (SES, Holt-Winters, Theta, ARIMA, Prophet-lite, MLP, Croston) with auto-pick or manual override per SKU.</p>
-    </div>
-    <div class="cap-card">
-      <div class="cap-head"><div class="cap-badge">S</div><h3>Supply</h3></div>
-      <p>3-tier multi-echelon daily simulation with BOM explosion and alternate-RM fallback. Replenishment with safety-stock cover.</p>
-    </div>
-    <div class="cap-card">
-      <div class="cap-head"><div class="cap-badge">M</div><h3>MRP + Material</h3></div>
-      <p>Gross / net requirements, scheduled receipts, planned orders. BOM-organised material view sharing supply-tab numbers.</p>
-    </div>
-    <div class="cap-card">
-      <div class="cap-head"><div class="cap-badge">F</div><h3>Finance / GP</h3></div>
-      <p>Revenue, COGS, GP, GP%, AOP variance derived from the same data. Override a forecast, watch GP recompute.</p>
-    </div>
-    <div class="cap-card">
-      <div class="cap-head"><div class="cap-badge">X</div><h3>External Signals</h3></div>
-      <p>Auto-correlated macro, weather, and cost series with R, lag, and band. Events with elasticity and Headroom KPI.</p>
-    </div>
-    <div class="cap-card">
-      <div class="cap-head"><div class="cap-badge">B</div><h3>BI Dashboard</h3></div>
-      <p>Five-zone executive view: KPIs, "act today", trends + run-rate, mix + variance + accuracy heatmap, signals + news.</p>
-    </div>
-    <div class="cap-card">
-      <div class="cap-head"><div class="cap-badge">N</div><h3>Substitution / Launch</h3></div>
-      <p>Predecessor / successor with bridge dates. AI-suggested reference SKU for new launches with a reasoning narrative.</p>
-    </div>
-    <div class="cap-card">
-      <div class="cap-head"><div class="cap-badge">A</div><h3>Ana — built-in AI</h3></div>
-      <p>FA recs ranked by expected improvement. Safety stock Δ per ABC class. New product analogy scoring. Monthly review with internal + external attribution.</p>
-    </div>
-    <div class="cap-card">
-      <div class="cap-head"><div class="cap-badge">R</div><h3>Monthly Review<span class="cap-tag">NEW</span></h3></div>
-      <p>Ana explains last month's performance vs forecast and AOP, attributes the move to internal and external factors, surfaces FY risks, and rebuilds every cycle from your actual data.</p>
-    </div>
-  </div>
-</section>
-
-<!-- FUNCTIONS -->
-<section id="functions">
-  <div class="reveal section-head center">
-    <p class="section-label">One platform, every function</p>
-    <h2>A planning system<br>for the business.</h2>
-    <p class="section-sub">Sales, marketing, supply chain, and finance work from a single plan — and leadership sees the whole business on one number.</p>
-  </div>
-
-  <div class="func-grid reveal">
-    <div class="func-card">
-      <div class="func-head"><div class="func-badge">◆</div><h3>Management</h3></div>
-      <div class="func-tagline">The whole business on one number.</div>
-      <ul>
-        <li>Board target, division AOP, and live gap-to-target on one screen.</li>
-        <li>Ana's monthly narrative: why last month moved, what's at risk this FY.</li>
-        <li>One version of the plan across every function — no reconciliation.</li>
-      </ul>
-    </div>
-    <div class="func-card">
-      <div class="func-head"><div class="func-badge">$</div><h3>Finance</h3></div>
-      <div class="func-tagline">Margin and cash, continuously.</div>
-      <ul>
-        <li>Revenue, COGS, GP, GP% and AOP variance from the same data.</li>
-        <li>Override a forecast — watch GP recompute instantly.</li>
-        <li>Working capital freed through defensible, simulation-backed safety stock.</li>
-      </ul>
-    </div>
-    <div class="func-card">
-      <div class="func-head"><div class="func-badge">↗</div><h3>Sales</h3></div>
-      <div class="func-tagline">Commit numbers you can hit.</div>
-      <ul>
-        <li>Demand consensus by channel, region, and customer.</li>
-        <li>Competitor OOS and event windows surfaced as upside to capture.</li>
-        <li>Promotion elasticity quantified before the number is committed.</li>
-      </ul>
-    </div>
-    <div class="func-card">
-      <div class="func-head"><div class="func-badge">◎</div><h3>Marketing</h3></div>
-      <div class="func-tagline">Launches and promos, with evidence.</div>
-      <ul>
-        <li>New-product forecasts from AI-scored reference SKUs.</li>
-        <li>Promotion and event impact modelled with elasticity and headroom.</li>
-        <li>Macro, weather, and public-event signals correlated to demand.</li>
-      </ul>
-    </div>
-    <div class="func-card">
-      <div class="func-head"><div class="func-badge">⬢</div><h3>Supply Chain</h3></div>
-      <div class="func-tagline">Service levels without the excess.</div>
-      <ul>
-        <li>3-tier daily simulation with BOM explosion and alternate-RM fallback.</li>
-        <li>Safety stock optimised per ABC service level, adopted in one click.</li>
-        <li>Ageing-stock and stockout risks flagged before they land.</li>
-      </ul>
-    </div>
-    <div class="func-card func-card--accent">
-      <div class="func-head"><div class="func-badge">A</div><h3>Ana ties it together</h3></div>
-      <div class="func-tagline">One AI across every desk.</div>
-      <ul>
-        <li>Grounded in your real SKU codes — no dashboards to build.</li>
-        <li>Explains, recommends, and attributes — in plain English.</li>
-        <li>The same intelligence, whichever function is looking.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- WHY WE WIN -->
-<section class="bg-light">
-  <div class="reveal section-head">
-    <p class="section-label">Why we win</p>
-    <h2>Same capabilities. Smarter AI.<br>10× cheaper.</h2>
-    <p class="section-sub">Match the incumbents on the planning fundamentals. Decisively beat them on AI, cost, and time-to-value.</p>
-  </div>
-
-  <div class="compare-wrap reveal">
-    <table class="compare">
-      <thead>
-        <tr>
-          <th>Capability</th>
-          <th>SAP IBP / Kinaxis / Blue Yonder / Anaplan</th>
-          <th>Planamind</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>AOP / budget alignment</td>
-          <td class="them"><span class="no">✗</span> Separate module or manual tracking</td>
-          <td class="us us-col">Native — every forecast anchored to budget, live gap</td>
-        </tr>
-        <tr>
-          <td>Navigator AI — proactive nudges</td>
-          <td class="them"><span class="no">✗</span> Alerts only; no recovery actions</td>
-          <td class="us us-col">Ageing stock, budget gaps, event windows, safety-stock release</td>
-        </tr>
-        <tr>
-          <td>Forecast accuracy recommendations</td>
-          <td class="them"><span class="no">✗</span> Not available</td>
-          <td class="us us-col">Pattern classification + ranked recs, holdout-validated</td>
-        </tr>
-        <tr>
-          <td>Safety stock intelligence</td>
-          <td class="them">Rule-based, manual inputs</td>
-          <td class="us us-col">ABC-routed + service-level optimised, one-click Δ</td>
-        </tr>
-        <tr>
-          <td>New product analogy AI</td>
-          <td class="them">Manual, planner's judgement</td>
-          <td class="us us-col">Hierarchy + trend + volume scoring with reasoning</td>
-        </tr>
-        <tr>
-          <td>External signal regression</td>
-          <td class="them">Add-on or separate module</td>
-          <td class="us us-col">Built-in: R², lag, p-value, confidence bands</td>
-        </tr>
-        <tr>
-          <td>Monthly review narrative</td>
-          <td class="them">KPI dashboard only</td>
-          <td class="us us-col">AI explains performance vs forecast + AOP with factor attribution</td>
-        </tr>
-        <tr>
-          <td>Demand forecasting</td>
-          <td class="them">3–5 statistical + ML models</td>
-          <td class="us us-col">12-model AutoML ensemble</td>
-        </tr>
-        <tr>
-          <td>Supply planning</td>
-          <td class="them">Multi-echelon</td>
-          <td class="us us-col">3-tier + BOM + alternate-RM fallback</td>
-        </tr>
-        <tr>
-          <td>Time-to-value</td>
-          <td class="them">9–18 months + SI engagement</td>
-          <td class="us us-col">48 hours, configuration only</td>
-        </tr>
-        <tr>
-          <td>Annual software cost</td>
-          <td class="them">$0.5M–$4M+ depending on vendor</td>
-          <td class="us us-col">~1/10th</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<!-- OUTCOMES + TESTIMONIALS -->
-<div class="stats">
-  <div class="reveal section-head center">
-    <p class="section-label">Our pedigree</p>
-    <h2>What Anamind's planning<br>engagements have delivered.</h2>
-    <p class="section-sub">Outcomes consistently achieved across hundreds of engagements. The same team, methodology, and engine now ship inside Planamind.</p>
-  </div>
-
-  <div class="outcomes-grid reveal">
-    <div>
-      <div class="outcome-val">5–20<span>%</span></div>
-      <div class="outcome-label">Forecast accuracy</div>
-      <div class="outcome-sub">Better inventory positioning, fewer stockouts.</div>
-    </div>
-    <div>
-      <div class="outcome-val">10–20<span>%</span></div>
-      <div class="outcome-label">Stock reduction</div>
-      <div class="outcome-sub">Less inventory, same or better service level.</div>
-    </div>
-    <div>
-      <div class="outcome-val">50–80<span>%</span></div>
-      <div class="outcome-label">Order-loss prevention</div>
-      <div class="outcome-sub">Through improved demand visibility.</div>
-    </div>
-    <div>
-      <div class="outcome-val">5–20<span>%</span></div>
-      <div class="outcome-label">Working capital saved</div>
-      <div class="outcome-sub">Inventory investment optimised; cash freed.</div>
-    </div>
-  </div>
-
-  <div class="quotes reveal">
-    <div class="quote-card">
-      <p>What truly sets Anamind apart is its AI-driven approach — built from the ground up with intelligence at its core, not bolted on. In a market requiring armies of consultants and months of customisation, Anamind stands out for its speed of deployment, ease of use, and genuine business impact.</p>
-      <div class="quote-author">Sandra Labinjoh</div>
-      <div class="quote-meta">Senior Supply Chain Planning Consultant · London</div>
-    </div>
-    <div class="quote-card">
-      <p>I was glad to experience its functionality first hand. An interesting product — excited to see the successes it will achieve in the various use cases.</p>
-      <div class="quote-author">Brian Okoth</div>
-      <div class="quote-meta">Head of Planning · Heineken Beverages · Kenya</div>
-    </div>
-    <div class="quote-card">
-      <p>Loved the latest demo of AI planning and the potential it holds.</p>
-      <div class="quote-author">Vasudha Jaiswal</div>
-      <div class="quote-meta">Director of Operations · Kenvue · Australia &amp; New Zealand</div>
-    </div>
-    <div class="quote-card">
-      <p>This is truly a business planning tool.</p>
-      <div class="quote-author">Nitin Jain</div>
-      <div class="quote-meta">Operations Director · Bacardi · India</div>
-    </div>
-  </div>
-</div>
+<div class="divider"></div>
 
 <!-- ROI -->
-<section class="roi">
-  <div class="reveal section-head">
-    <p class="section-label">ROI worked example</p>
-    <h2>What 5 points of forecast<br>accuracy is worth.</h2>
-    <p class="section-sub">Illustrative for a $500M-revenue mid-market manufacturer with 18% inventory carrying cost. Adjust to your numbers in 60 seconds.</p>
-  </div>
+<div style="padding: 0 40px; max-width: 1240px; margin: 0 auto;">
+  <div class="roi-section reveal">
+    <div class="section-tag">The business case</div>
+    <h2 class="section-title">What seeing the future 5 points earlier <em>is worth.</em></h2>
+    <p style="margin-top:12px; font-size:0.85rem; color:rgba(231,230,221,0.4);">Illustrative for a $500M-revenue mid-market manufacturer with 18% inventory carrying cost. We'll run your numbers in the demo.</p>
 
-  <div class="roi-grid reveal">
-    <div class="roi-panel">
-      <h3>Assumptions</h3>
-      <div class="roi-line"><span>Revenue</span><span>$500M / year</span></div>
-      <div class="roi-line"><span>Inventory days of cover</span><span>45 days</span></div>
-      <div class="roi-line"><span>Avg inventory on hand</span><span>~$60M</span></div>
-      <div class="roi-line"><span>Carrying cost</span><span>18% / year</span></div>
-      <div class="roi-line"><span>Current WAPE</span><span>22%</span></div>
-      <div class="roi-line"><span>Target WAPE with Planamind</span><span>17% (5pp gain)</span></div>
-    </div>
-    <div class="roi-results">
-      <div class="roi-result">
-        <div class="rr-val">~$6.6M</div>
-        <div class="rr-label">Inventory released</div>
-        <div class="rr-sub">~11% inventory reduction × $60M base — defensible safety stock cuts excess cover.</div>
+    <div class="roi-numbers">
+      <div class="roi-box">
+        <div class="roi-num">~$6.6M</div>
+        <div class="roi-label">Inventory released<br><span style="color:rgba(231,230,221,0.3)">11% inventory reduction × $60M base</span></div>
       </div>
-      <div class="roi-result orange">
-        <div class="rr-val">~$1.2M / yr</div>
-        <div class="rr-label">Carrying-cost saved</div>
-        <div class="rr-sub">18% × $6.6M released. Recurring annual saving, not a one-time.</div>
+      <div class="roi-box">
+        <div class="roi-num">~$1.2M/yr</div>
+        <div class="roi-label">Carrying-cost saved annually<br><span style="color:rgba(231,230,221,0.3)">18% × $6.6M released</span></div>
       </div>
-      <div class="roi-result">
-        <div class="rr-val">~$4.5M / yr</div>
-        <div class="rr-label">Stockout-driven revenue recovered</div>
-        <div class="rr-sub">Conservative 60% reduction in order losses on 1.5% of revenue currently lost to stockouts.</div>
+      <div class="roi-box">
+        <div class="roi-num">~$4.5M/yr</div>
+        <div class="roi-label">Stockout revenue recovered<br><span style="color:rgba(231,230,221,0.3)">60% reduction in order losses</span></div>
       </div>
     </div>
-  </div>
 
-  <div class="roi-total reveal">
-    <strong>~$1.2M</strong> annual operating saving + <strong>~$6.6M</strong> one-time working-capital release + <strong>~$4.5M</strong> revenue recovery — vs a Planamind subscription typically 5–10% of one IBP/Kinaxis annual licence.
+    <p style="margin-top:28px; font-size:0.82rem; color:rgba(231,230,221,0.4); text-align:center;">
+      Planamind's annual subscription is typically 5–10% of a comparable enterprise planning platform licence.
+    </p>
+  </div>
+</div>
+
+<div class="divider" style="margin-top: 80px;"></div>
+
+<!-- TIMELINE -->
+<section id="onboarding">
+  <div class="section-tag reveal">From demo to live</div>
+  <h2 class="section-title reveal">You see the future on Day 2. <em>You're running it by Day 30.</em></h2>
+
+  <div class="timeline">
+    <div class="timeline-step">
+      <div class="timeline-dot"></div>
+      <div class="timeline-day">Hour 1</div>
+      <h4>Live demo</h4>
+      <p>No slides. We demo on a real dataset — yours if you send it ahead, or a pharma/FMCG reference set. You see the full planning picture in one workspace.</p>
+    </div>
+    <div class="timeline-step">
+      <div class="timeline-dot"></div>
+      <div class="timeline-day">Day 1</div>
+      <h4>Your data, live</h4>
+      <p>Upload 24 months of actuals, AOP, and supply parameters. The engine runs the latest ML forecasting models and a full supply plan overnight — no configuration call needed.</p>
+    </div>
+    <div class="timeline-step">
+      <div class="timeline-dot"></div>
+      <div class="timeline-day">Day 2</div>
+      <h4>Side-by-side readout</h4>
+      <p>60 minutes: your A-class SKUs, your AOP gaps, your supply shortfalls — vs what you have today. If we don't beat it, you walk with the export.</p>
+    </div>
+    <div class="timeline-step">
+      <div class="timeline-dot"></div>
+      <div class="timeline-day">Week 1</div>
+      <h4>Pilot sprint</h4>
+      <p>Planners run the next cycle on Planamind alongside today's tool. Your IT team gets the InfoSec walk-through. No procurement motion required yet.</p>
+    </div>
+    <div class="timeline-step">
+      <div class="timeline-dot"></div>
+      <div class="timeline-day">Day 30</div>
+      <h4>Full production</h4>
+      <p>All divisions live. Pilot data carries over — no re-uploads. End-to-end business planning without an SI in the room or a multi-year contract on the table.</p>
+    </div>
   </div>
 </section>
 
-<!-- SETUP & DEPLOYMENT -->
-<section class="how" id="how">
-  <div class="reveal section-head">
-    <p class="section-label">Setup &amp; deployment</p>
-    <h2>From contract to production<br>in days, not quarters.</h2>
-    <p class="section-sub">Onboarding into Planamind looks more like Notion than an ERP implementation. Multi-tenant SaaS — going live is configuration, not a project.</p>
-  </div>
-
-  <div class="timeline reveal">
-    <div class="tl-step">
-      <span class="tl-day">DAY 0</span>
-      <h3>Tenant up</h3>
-      <p>Subdomain provisioned. Clerk SSO connected. NDA signed.</p>
-    </div>
-    <div class="tl-step">
-      <span class="tl-day">DAY 1</span>
-      <h3>Data uploaded</h3>
-      <p>Master, transactions, supply, pricelist, AOP, BOM. Engine runs forecasts + 3-tier supply plan in the background.</p>
-    </div>
-    <div class="tl-step">
-      <span class="tl-day">DAY 2</span>
-      <h3>Live readout</h3>
-      <p>60-min session: side-by-side accuracy on A-class SKUs vs your current model. Full supply plan. Ana SS recommendations.</p>
-    </div>
-    <div class="tl-step">
-      <span class="tl-day">WEEK 1</span>
-      <h3>Pilot sprint</h3>
-      <p>Planners run their next cycle on Planamind alongside today's tool. Optional InfoSec walk-through.</p>
-    </div>
-    <div class="tl-step">
-      <span class="tl-day">DAY 30</span>
-      <h3>Production</h3>
-      <p>All divisions live. Pilot data carries over — no re-uploads. End-to-end planning without an SI in the room.</p>
-    </div>
-  </div>
-</section>
+<div class="divider"></div>
 
 <!-- PRICING -->
 <section id="pricing">
-  <div class="reveal section-head">
-    <p class="section-label">Pricing</p>
-    <h2>Annual subscription.<br>The 10× cost gap is structural.</h2>
-    <p class="section-sub">Per tenant, per division. No per-seat tax, no services markup. Annual TCO — mid-market estimate, illustrative ranges.</p>
-  </div>
+  <div class="section-tag reveal">Annual subscription</div>
+  <h2 class="section-title reveal">The future of your business shouldn't cost <em>the present one.</em></h2>
+  <p class="reveal" style="margin-top:16px; color:rgba(231,230,221,0.5); font-size:0.9rem; max-width:500px; line-height:1.65;">
+    No per-seat tax. No implementation partner to fund. No 18-month runway before you see value. Annual TCO comparison — mid-market estimate.
+  </p>
 
-  <div class="price-rows reveal">
-    <div class="price-row">
-      <div class="price-name">SAP IBP</div>
-      <div class="price-track"><div class="price-fill" style="width:100%"></div></div>
-      <div class="price-amt">$1.5M–$4M+</div>
+  <div class="pricing-row">
+    <div class="price-item">
+      <div class="price-vendor">SAP IBP</div>
+      <div class="price-cost">$1.5M–$4M+</div>
     </div>
-    <div class="price-row">
-      <div class="price-name">Kinaxis</div>
-      <div class="price-track"><div class="price-fill" style="width:78%"></div></div>
-      <div class="price-amt">$1.0M–$3M</div>
+    <div class="price-item">
+      <div class="price-vendor">Kinaxis</div>
+      <div class="price-cost">$1.0M–$3M</div>
     </div>
-    <div class="price-row">
-      <div class="price-name">Blue Yonder</div>
-      <div class="price-track"><div class="price-fill" style="width:64%"></div></div>
-      <div class="price-amt">$0.8M–$2.5M</div>
+    <div class="price-item">
+      <div class="price-vendor">Blue Yonder</div>
+      <div class="price-cost">$0.8M–$2.5M</div>
     </div>
-    <div class="price-row">
-      <div class="price-name">Anaplan</div>
-      <div class="price-track"><div class="price-fill" style="width:42%"></div></div>
-      <div class="price-amt">$0.5M–$1.5M</div>
+    <div class="price-item">
+      <div class="price-vendor">Anaplan</div>
+      <div class="price-cost">$0.5M–$1.5M</div>
     </div>
-    <div class="price-row us">
-      <div class="price-name">Planamind</div>
-      <div class="price-track"><div class="price-fill" style="width:10%"></div></div>
-      <div class="price-amt">~1/10th</div>
+    <div class="price-item highlighted">
+      <div class="price-vendor">Planamind</div>
+      <div class="price-cost">~1/10th</div>
     </div>
-  </div>
-
-  <div class="price-why reveal">
-    <div>Multi-tenant SaaS — no per-tenant infrastructure cost.</div>
-    <div>No SI partner network to subsidise.</div>
-    <div>Self-serve onboarding — no implementation team to staff.</div>
-    <div>Modern stack (Next.js, Postgres, Vercel) — no legacy maintenance debt.</div>
-    <div>AI handles what consultants used to.</div>
-    <div>And the SI line item disappears.</div>
   </div>
 </section>
 
-<!-- WHAT CHANGES FOR YOU -->
-<section class="bg-light">
-  <div class="reveal section-head">
-    <p class="section-label">What changes for you</p>
-    <h2>Same product, three<br>different wins.</h2>
-    <p class="section-sub">The CFO, the planner, and IT each have a different reason to say yes.</p>
-  </div>
-
-  <div class="persona-grid reveal">
-    <div class="persona-card">
-      <div class="persona-badge">$</div>
-      <h3>For the CFO</h3>
-      <div class="persona-tagline">Capital efficiency, not cost-cutting.</div>
-      <ul>
-        <li>GP%, AOP variance and revenue gap-to-target on the same dashboard your supply team uses.</li>
-        <li>Working capital pressure-tested with daily simulation — defensible safety stock per ABC class.</li>
-        <li>~10× lower TCO than IBP/Kinaxis — and the SI line item disappears.</li>
-        <li>4-week pilot, walk-away clause. Worst case: two days of an analyst's time.</li>
-      </ul>
-    </div>
-    <div class="persona-card">
-      <div class="persona-badge">P</div>
-      <h3>For the planner</h3>
-      <div class="persona-tagline">Less tool sprawl, more judgement.</div>
-      <ul>
-        <li>One screen across demand, supply, MRP and finance. No more Excel reconciliation.</li>
-        <li>Ana suggests model switches, safety-stock changes, and reference SKUs — with reasoning.</li>
-        <li>Excel-shaped uploads. No DSL, no schema design, no consultant in the room.</li>
-        <li>&lt; 15 minutes from first login to first override. No multi-day training.</li>
-      </ul>
-    </div>
-    <div class="persona-card">
-      <div class="persona-badge">IT</div>
-      <h3>For IT / InfoSec</h3>
-      <div class="persona-tagline">Modern stack, predictable surface.</div>
-      <ul>
-        <li>SOC 2 Type II compliant. Clerk SSO (SAML / OIDC / MFA), AES-256-GCM secrets, EU/US/APAC region pinning.</li>
-        <li>Multi-tenant SaaS — no on-prem, no agents, no per-tenant infra cost.</li>
-        <li>SharePoint sync read-only, per-site Sites.Selected grant, no Delegated permissions.</li>
-        <li>Per-tenant AI query budget enforced server-side. No model training on your data.</li>
-      </ul>
-    </div>
-  </div>
-</section>
+<div class="divider"></div>
 
 <!-- CTA -->
-<section class="cta-section" id="contact">
-  <p class="section-label">The next step is small</p>
-  <h2>48-hour Proof of Value</h2>
-  <p>NDA only. No procurement, no MSA, no SOW. Send your last 24 months of data tonight — we run 12-model forecasts and a full 3-tier supply plan, then give you a 60-minute side-by-side readout on your A-class SKUs. If we don't beat what you have today, you walk with the export and we shake hands.</p>
-  <div class="cta-btns">
-    <a href="mailto:rishi@anamind.com" class="btn-white">Start your Proof of Value</a>
+<div class="cta-section" id="contact">
+  <h2>See the future of your business — <em style="color:var(--orange)">live, no slides, this week.</em></h2>
+  <p>Join us for a live demo of the next-generation business planning platform bringing your entire planning picture into one intelligent workspace. Or send your last 24 months of data and we'll run your numbers — forecasts, supply plan, AOP gaps — and give you a 60-minute readout in 48 hours. If we don't beat what you have today, you walk with the export.</p>
+
+  <div class="cta-actions">
+    <a href="mailto:rishi@anamind.com" class="btn-cta-main">
+      Book a Live Demo →
+    </a>
+    <div class="cta-fine">No slides · No commitment · No procurement motion required</div>
   </div>
-  <div class="regions">
-    <a class="region" href="mailto:sheetal@anamind.com">
-      <div class="region-place">India</div>
-      <div class="region-email">sheetal@anamind.com</div>
-    </a>
-    <a class="region" href="mailto:adam@anamind.com">
-      <div class="region-place">USA</div>
-      <div class="region-email">adam@anamind.com</div>
-    </a>
-    <a class="region" href="mailto:sandra@anamind.com">
-      <div class="region-place">Europe</div>
-      <div class="region-email">sandra@anamind.com</div>
-    </a>
-    <a class="region" href="mailto:apurva@anamind.com">
-      <div class="region-place">ANZ</div>
-      <div class="region-email">apurva@anamind.com</div>
-    </a>
+
+  <div class="contact-emails">
+    <div class="contact-email-item">
+      <div class="region">India</div>
+      <a href="mailto:sheetal@anamind.com">sheetal@anamind.com</a>
+    </div>
+    <div class="contact-email-item">
+      <div class="region">USA</div>
+      <a href="mailto:adam@anamind.com">adam@anamind.com</a>
+    </div>
+    <div class="contact-email-item">
+      <div class="region">Europe</div>
+      <a href="mailto:sandra@anamind.com">sandra@anamind.com</a>
+    </div>
+    <div class="contact-email-item">
+      <div class="region">ANZ</div>
+      <a href="mailto:apurva@anamind.com">apurva@anamind.com</a>
+    </div>
   </div>
-</section>
+</div>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo"><img src="assets/planamind_logo.png" alt="Planamind"></div>
-  <div class="footer-links">
-    <a href="appendix.html">Appendix &amp; reference</a>
-    <a href="#">Privacy</a>
-    <a href="#">Terms</a>
-    <a href="mailto:rishi@anamind.com">Contact</a>
-    <a href="https://anamind.com">Anamind</a>
-  </div>
-  <span class="footer-copy">Planamind is a product of Anamind LLC · © 2026 Anamind LLC. All rights reserved.</span>
+  <div class="footer-logo"><img src="assets/apple-touch-icon.png" height="30" style="width:auto;display:block;" alt="Planamind"></div>
+  <ul class="foot-links">
+    <li><a href="/appendix.html">Appendix</a></li>
+    <li><a href="#">Privacy</a></li>
+    <li><a href="#">Terms</a></li>
+    <li><a href="mailto:rishi@anamind.com">Contact</a></li>
+    <li><a href="https://anamind.com">Anamind</a></li>
+  </ul>
+  <div class="foot-copy">© 2026 Anamind LLC</div>
 </footer>
 
 <script>
-  // Modal
-  function openModal() {
-    document.getElementById('loginModal').classList.add('open');
-    setTimeout(() => document.getElementById('orgInput').focus(), 100);
-  }
-  function closeModal() {
-    document.getElementById('loginModal').classList.remove('open');
-    document.getElementById('orgInput').value = '';
-    document.getElementById('orgPreview').textContent = 'For existing customers only';
-    document.getElementById('orgError').classList.remove('show');
-  }
-  function handleOverlayClick(e) {
-    if (e.target === document.getElementById('loginModal')) closeModal();
-  }
-  function updatePreview() {
-    const val = document.getElementById('orgInput').value.trim().toLowerCase().replace(/[^a-z0-9-]/g, '');
-    const preview = document.getElementById('orgPreview');
-    document.getElementById('orgError').classList.remove('show');
-    if (val) {
-      preview.innerHTML = `You'll be taken to <strong style="color:var(--blue)">${val}.planamind.com</strong>`;
-    } else {
-      preview.textContent = 'For existing customers only';
-    }
-  }
-  function goToOrg() {
-    const val = document.getElementById('orgInput').value.trim().toLowerCase().replace(/[^a-z0-9-]/g, '');
-    if (!val) {
-      document.getElementById('orgError').classList.add('show');
-      return;
-    }
-    window.location.href = `https://${val}.planamind.com/sign-in`;
-  }
-
-  // Escape key closes modal
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
   // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Stagger children
+        const children = entry.target.querySelectorAll('.pain-card, .intel-card, .metric-box, .timeline-step, .testi-card, .price-item, .nudge');
+        children.forEach((child, i) => {
+          setTimeout(() => child.classList.add('visible'), i * 80);
+        });
       }
     });
-  }, { threshold: 0, rootMargin: '0px 0px -12% 0px' });
-  reveals.forEach(el => observer.observe(el));
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
-  // Nav shadow on scroll + close mobile menu on link click
-  const navEl = document.querySelector('nav');
+  document.querySelectorAll('.reveal, .pain-grid, .intel-grid, .metrics-row, .timeline, .testi-grid, .pricing-row, .nudge-list').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Also observe individual animated children
+  document.querySelectorAll('.pain-card, .intel-card, .metric-box, .timeline-step, .testi-card, .price-item, .nudge').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Nav scroll effect
   window.addEventListener('scroll', () => {
-    navEl.classList.toggle('scrolled', window.scrollY > 20);
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 60) {
+      nav.style.borderBottomColor = 'rgba(241,145,32,0.2)';
+    } else {
+      nav.style.borderBottomColor = 'rgba(241,145,32,0.12)';
+    }
   });
-  document.querySelectorAll('.nav-links a').forEach(a => {
-    a.addEventListener('click', () => document.body.classList.remove('menu-open'));
-  });
-
-  // Scrollspy — highlight the nav link for the section in view
-  const navLinks = [...document.querySelectorAll('.nav-links a')];
-  const spied = navLinks
-    .map(a => document.querySelector(a.getAttribute('href')))
-    .filter(Boolean);
-  const spy = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const id = e.target.id;
-        navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
-      }
-    });
-  }, { rootMargin: '-45% 0px -50% 0px' });
-  spied.forEach(s => spy.observe(s));
-
-  // Animated bars on load
-  const bars = document.querySelectorAll('.bar');
-  setTimeout(() => {
-    bars.forEach((b, i) => {
-      b.style.opacity = '0';
-      b.style.transition = `height 0.4s ${i * 0.04}s ease, opacity 0.3s ${i * 0.04}s`;
-      setTimeout(() => { b.style.opacity = b.classList.contains('dashed') ? '0.6' : (b.classList.contains('forecast') ? '0.7' : '0.85'); }, 50);
-    });
-  }, 700);
 </script>
 </body>
 </html>
