@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://www.anamind.com/platform/",
+      "permanent": true
+    }
+  ]
+}
